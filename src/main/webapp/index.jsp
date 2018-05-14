@@ -46,6 +46,15 @@
         <li>View the <a href="/about.jsp">about</a> page to learn more about the
             project.</li>
       </ul>
+
+      <h2>Meet The Team:</h2>
+      <ul>
+        <li>Alexandria Storm - Engineer</li>
+        <li>Ana Vitorio do Valle Costa - Engineer</li>
+        <li>Emily Arroyo - Engineer</li>
+        <li>Gavin Lifrieri - Engineer</li>
+        <li>Kevin Workman - Team Advisor</li>
+      </ul>
     </div>
   </div>
 </body>

@@ -64,6 +64,25 @@
         This page should also be used to describe the features and improvements
         you've added.
       </p>
+
+      <h1>The Students of Team 18!</h1>
+      <ul>
+        <li>
+          <strong>Alexandria Storm: </strong> Filler text until I get a bio from Alexandria.
+        </li>
+        <li>
+          <strong>Ana Vitorio do Valle Costa: </strong> Filler text until I get a bio from Ana.
+        </li>
+        <li>
+          <strong>Emily Arroyo: </strong> Filler text until I get a bio from Emily.
+        </li>
+        <li>
+          <strong>Gavin Lifrieri: </strong> Filler text until I come up with something witty.
+        </li>
+        <li>
+          <strong>Kevin Workman: </strong> Filler text until I get a bio from Kevin.
+        </li>
+      </ul>
     </div>
   </div>
 </body>
