@@ -43,6 +43,7 @@ public class ChatServlet extends HttpServlet {
   /** Store class that gives access to Users. */
   private UserStore userStore;
 
+
   /** Set up state for handling chat requests. */
   @Override
   public void init() throws ServletException {
@@ -141,7 +142,9 @@ public class ChatServlet extends HttpServlet {
     String messageContent = request.getParameter("message");
 
     // this removes any HTML from the message content
-    String cleanedMessageContent = Jsoup.clean(messageContent, Whitelist.none());
+    // altered the whitelist so that text modifiers aren't removed
+    String cleanedMessageContent = Jsoup.clean(messageContent, Whitelist.basic());
+    System.out.println(cleanedMessageContent);
 
     Message message =
         new Message(
