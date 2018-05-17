@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Activity Log</title>
+        <title>Activity Feed</title>
     </head>
     <body>
         <h1>This is the activity feed<h1>
