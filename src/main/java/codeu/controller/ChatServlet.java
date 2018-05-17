@@ -151,8 +151,6 @@ public class ChatServlet extends HttpServlet {
     // reference for this whitelist can be found here: https://jsoup.org/apidocs/org/jsoup/safety/Whitelist.html#basic--
     String cleanedMessageContent = Jsoup.clean(messageContent, "", Whitelist.basic(), settings);
 
-    cleanedMessageContent = replaceUrls(cleanedMessageContent);
-
     Message message =
         new Message(
             UUID.randomUUID(),
