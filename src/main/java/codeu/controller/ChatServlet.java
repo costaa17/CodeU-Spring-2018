@@ -102,7 +102,8 @@ public class ChatServlet extends HttpServlet {
       //remove this instance of the url from the original text:
       text = text.substring(0,index) + text.substring(index + containedUrls.get(i).length());
       //update the instance of the url in the new text:
-      newText = newText.substring(0,index) + "<a href='" + containedUrls.get(i) + "'>" + containedUrls.get(i) + "</a>" + newText.substring(index + containedUrls.get(i).length());
+      newText = newText.substring(0,index) + "<a href='" + containedUrls.get(i) + "'>" 
+              + containedUrls.get(i) + "</a>" + newText.substring(index + containedUrls.get(i).length());
     }
     return newText;
   }
