@@ -207,10 +207,8 @@ public class ChatServletTest {
     ArgumentCaptor<Message> messageArgumentCaptor = ArgumentCaptor.forClass(Message.class);
     Mockito.verify(mockMessageStore).addMessage(messageArgumentCaptor.capture());
     
-    // so this is really weird. I have to include a newline escape key before the <b> tag for this test to pass
-    // Anyone have any idea why?
     Assert.assertEquals(
-        "Contains \n<b>html</b> and  content.", messageArgumentCaptor.getValue().getContent());
+        "Contains <b>html</b> and  content.", messageArgumentCaptor.getValue().getContent());
 
     Mockito.verify(mockResponse).sendRedirect("/chat/test_conversation");
   }
@@ -236,6 +234,7 @@ public class ChatServletTest {
     Mockito.when(mockRequest.getParameter("message"))
         .thenReturn("This contains a url: www.google.com");
 
+
     chatServlet.doPost(mockRequest, mockResponse);
 
     ArgumentCaptor<Message> messageArgumentCaptor = ArgumentCaptor.forClass(Message.class);
@@ -244,10 +243,46 @@ public class ChatServletTest {
     Assert.assertEquals(
         "This contains a url:<a href=' www.google.com'> www.google.com</a>", messageArgumentCaptor.getValue().getContent());
 
+
     Mockito.verify(mockResponse).sendRedirect("/chat/test_conversation");
   }
 
   @Test
+  public void testDoPost_AllowsTextTags() throws IOException, ServletException {
+    Mockito.when(mockRequest.getRequestURI()).thenReturn("/chat/test_conversation");
+    Mockito.when(mockSession.getAttribute("user")).thenReturn("test_username");
+
+    User fakeUser =
+        new User(
+            UUID.randomUUID(),
+            "test_username",
+            "$2a$10$eDhncK/4cNH2KE.Y51AWpeL8/5znNBQLuAFlyJpSYNODR/SJQ/Fg6",
+            Instant.now());
+    Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
+
+    Conversation fakeConversation =
+        new Conversation(UUID.randomUUID(), UUID.randomUUID(), "test_conversation", Instant.now());
+    Mockito.when(mockConversationStore.getConversationWithTitle("test_conversation"))
+        .thenReturn(fakeConversation);
+
+    Mockito.when(mockRequest.getParameter("message"))
+        .thenReturn("Contains <b>html</b> and <script>JavaScript</script> content. This should be <em>included</em>");
+
+
+    chatServlet.doPost(mockRequest, mockResponse);
+
+    ArgumentCaptor<Message> messageArgumentCaptor = ArgumentCaptor.forClass(Message.class);
+    Mockito.verify(mockMessageStore).addMessage(messageArgumentCaptor.capture());
+    
+    Assert.assertEquals(
+        "Contains <b>html</b> and  content. This should be <em>included</em>", messageArgumentCaptor.getValue().getContent());
+
+
+    Mockito.verify(mockResponse).sendRedirect("/chat/test_conversation");
+  }
+
+  @Test
+
   public void testDoPost_AddsTwoUrls() throws IOException, ServletException {
     Mockito.when(mockRequest.getRequestURI()).thenReturn("/chat/test_conversation");
     Mockito.when(mockSession.getAttribute("user")).thenReturn("test_username");
@@ -275,6 +310,38 @@ public class ChatServletTest {
     
     Assert.assertEquals(
         "This contains two urls:<a href=' www.google.com'> www.google.com</a> and<a href=' www.youtube.com'> www.youtube.com</a>", messageArgumentCaptor.getValue().getContent());
+
+    Mockito.verify(mockResponse).sendRedirect("/chat/test_conversation");
+  }
+
+  @Test
+  public void testDoPost_RemovesBadTags() throws IOException, ServletException {
+    Mockito.when(mockRequest.getRequestURI()).thenReturn("/chat/test_conversation");
+    Mockito.when(mockSession.getAttribute("user")).thenReturn("test_username");
+
+    User fakeUser =
+        new User(
+            UUID.randomUUID(),
+            "test_username",
+            "$2a$10$eDhncK/4cNH2KE.Y51AWpeL8/5znNBQLuAFlyJpSYNODR/SJQ/Fg6",
+            Instant.now());
+    Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
+
+    Conversation fakeConversation =
+        new Conversation(UUID.randomUUID(), UUID.randomUUID(), "test_conversation", Instant.now());
+    Mockito.when(mockConversationStore.getConversationWithTitle("test_conversation"))
+        .thenReturn(fakeConversation);
+
+    Mockito.when(mockRequest.getParameter("message"))
+        .thenReturn("This message contains <script>malicious</script> content. We should remove nontext stuff like <div>this</div>");
+
+    chatServlet.doPost(mockRequest, mockResponse);
+
+    ArgumentCaptor<Message> messageArgumentCaptor = ArgumentCaptor.forClass(Message.class);
+    Mockito.verify(mockMessageStore).addMessage(messageArgumentCaptor.capture());
+    
+    Assert.assertEquals(
+        "This message contains  content. We should remove nontext stuff like this", messageArgumentCaptor.getValue().getContent());
 
     Mockito.verify(mockResponse).sendRedirect("/chat/test_conversation");
   }
