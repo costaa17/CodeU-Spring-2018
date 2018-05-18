@@ -29,6 +29,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document.OutputSettings;
 import org.jsoup.safety.Whitelist;
 
 /** Servlet class responsible for the chat page. */
@@ -42,6 +43,7 @@ public class ChatServlet extends HttpServlet {
 
   /** Store class that gives access to Users. */
   private UserStore userStore;
+
 
   /** Set up state for handling chat requests. */
   @Override
@@ -140,8 +142,14 @@ public class ChatServlet extends HttpServlet {
 
     String messageContent = request.getParameter("message");
 
-    // this removes any HTML from the message content
-    String cleanedMessageContent = Jsoup.clean(messageContent, Whitelist.none());
+
+    // adjusted settings for cleaning done by Jsoup
+    OutputSettings settings = new OutputSettings();
+    settings.prettyPrint(false);  
+
+    // this removes all HTML tags except for text nodes (a, b, blockquote, li, ol)
+    // reference for this whitelist can be found here: https://jsoup.org/apidocs/org/jsoup/safety/Whitelist.html#basic--
+    String cleanedMessageContent = Jsoup.clean(messageContent, "", Whitelist.basic(), settings);
 
     Message message =
         new Message(
