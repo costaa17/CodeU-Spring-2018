@@ -80,6 +80,8 @@ public class ChatServlet extends HttpServlet {
   public static String replaceUrls(String text){
     String newText = text;
     ArrayList<String> containedUrls = new ArrayList<String>();
+    // regular expression taken from https://stackoverflow.com/questions/5713558/detect-and-extract-url-from-a-string
+    // matches with ftp, http, https, and www prefixed urls
     Pattern pattern = Pattern.compile(
        "(?:^|[\\W])((ht|f)tp(s?):\\/\\/|www\\.)"
                 + "(([\\w\\-]+\\.){1,}?([\\w\\-.~]+\\/?)*"
@@ -172,9 +174,7 @@ public class ChatServlet extends HttpServlet {
     // altered the whitelist so that text modifiers aren't removed
     String cleanedMessageContent = Jsoup.clean(messageContent, Whitelist.basic());
 
-
     cleanedMessageContent = replaceUrls(cleanedMessageContent);
-    System.out.println(cleanedMessageContent);
 
     Message message =
         new Message(
