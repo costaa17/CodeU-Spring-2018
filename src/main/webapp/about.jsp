@@ -45,19 +45,19 @@
       <h1>The Students of Team 18!</h1>
       <ul>
         <li>
-          <strong>Alexandria Storm: </strong> Filler text until I get a bio from Alexandria.
+          <strong>Alexandria Storm: </strong> Alexandria is a student at University of California, Berkeley. She enjoys Photography, listening to Kehlani, Hayley Kiyoko and Beyonce, and watching Jane the Virgin!
         </li>
         <li>
-          <strong>Ana Vitorio do Valle Costa: </strong> Filler text until I get a bio from Ana.
+          <strong>Ana Vitorio do Valle Costa: </strong> Ana studies at University of Washington and plans to major in computer engineering.
         </li>
         <li>
-          <strong>Emily Arroyo: </strong> Filler text until I get a bio from Emily.
+          <strong>Emily Arroyo: </strong> Emily is at student at Columbia University and intends to study Computer Science and minor in economics. She enjoys spending time with family and friends, running, and adventuring in her free time.
         </li>
         <li>
-          <strong>Gavin Lifrieri: </strong> Filler text until I come up with something witty.
+          <strong>Gavin Lifrieri: </strong> Gavin is a Computer Science concentrator at Harvard University. He enjoys skateboarding in his free time.
         </li>
         <li>
-          <strong>Kevin Workman: </strong> Filler text until I get a bio from Kevin.
+          <strong>Kevin Workman: </strong> Kevin works for Google Maps and has been a CodeU advisor for two years. He still has no idea what he's doing most of the time.
         </li>
       </ul>
 
