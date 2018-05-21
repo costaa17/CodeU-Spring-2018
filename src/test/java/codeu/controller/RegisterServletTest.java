@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import codeu.model.store.basic.ActivityFeedStore;
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.Before;
@@ -23,6 +24,7 @@ public class RegisterServletTest {
   private HttpServletRequest mockRequest;
   private HttpServletResponse mockResponse;
   private RequestDispatcher mockRequestDispatcher;
+  private ActivityFeedStore mockActivityFeedStore;
 
   @Before
   public void setup() {
@@ -32,6 +34,7 @@ public class RegisterServletTest {
     mockRequestDispatcher = Mockito.mock(RequestDispatcher.class);
     Mockito.when(mockRequest.getRequestDispatcher("/WEB-INF/view/register.jsp"))
         .thenReturn(mockRequestDispatcher);
+    mockActivityFeedStore = Mockito.mock(ActivityFeedStore.class);
   }
 
   @Test
@@ -58,6 +61,7 @@ public class RegisterServletTest {
     Mockito.when(mockRequest.getParameter("password")).thenReturn("test password");
 
     UserStore mockUserStore = Mockito.mock(UserStore.class);
+    mockUserStore.setActivityFeedStore(mockActivityFeedStore);
     Mockito.when(mockUserStore.isUserRegistered("test username")).thenReturn(false);
     registerServlet.setUserStore(mockUserStore);
 

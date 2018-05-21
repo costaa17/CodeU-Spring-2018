@@ -14,7 +14,10 @@
 
 package codeu.model.store.basic;
 
+import codeu.model.data.Activity;
+import codeu.model.data.Conversation;
 import codeu.model.data.Message;
+import codeu.model.data.User;
 import codeu.model.store.persistence.PersistentStorageAgent;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,12 +33,18 @@ public class MessageStore {
   /** Singleton instance of MessageStore. */
   private static MessageStore instance;
 
+  private static ActivityFeedStore activityFeedStore;
+
+  private static UserStore userStore;
+
+  private static ConversationStore conversationStore;
   /**
    * Returns the singleton instance of MessageStore that should be shared between all servlet
    * classes. Do not call this function from a test; use getTestInstance() instead.
    */
   public static MessageStore getInstance() {
     if (instance == null) {
+      activityFeedStore = ActivityFeedStore.getInstance();
       instance = new MessageStore(PersistentStorageAgent.getInstance());
     }
     return instance;
@@ -46,8 +55,16 @@ public class MessageStore {
    *
    * @param persistentStorageAgent a mock used for testing
    */
-  public static MessageStore getTestInstance(PersistentStorageAgent persistentStorageAgent) {
+  public static MessageStore getTestInstance(PersistentStorageAgent persistentStorageAgent,
+                                             ActivityFeedStore activityFeedStore,
+                                             ConversationStore conversationStore,
+                                             UserStore userStore) {
+    MessageStore inst = new MessageStore(persistentStorageAgent);
+    inst.setActivityFeedStore(activityFeedStore);
+    inst.setConversationStore(conversationStore);
+    inst.setUserStore(userStore);
     return new MessageStore(persistentStorageAgent);
+
   }
 
   /**
@@ -62,6 +79,9 @@ public class MessageStore {
   /** This class is a singleton, so its constructor is private. Call getInstance() instead. */
   private MessageStore(PersistentStorageAgent persistentStorageAgent) {
     this.persistentStorageAgent = persistentStorageAgent;
+    activityFeedStore = ActivityFeedStore.getInstance();
+    userStore = UserStore.getInstance();
+    conversationStore = ConversationStore.getInstance();
     messages = new ArrayList<>();
   }
 
@@ -69,6 +89,12 @@ public class MessageStore {
   public void addMessage(Message message) {
     messages.add(message);
     persistentStorageAgent.writeThrough(message);
+    User user = userStore.getUser(message.getAuthorId());
+    Conversation conversation = conversationStore.getConversation(message.getConversationId());
+    if (user != null && conversation != null ) {
+      String event = user.getName() + " sent a message to the conversation: " + conversation.getTitle();
+      activityFeedStore.addActivity(new Activity(event));
+    }
   }
 
   /** Access the current set of Messages within the given Conversation. */
@@ -88,5 +114,29 @@ public class MessageStore {
   /** Sets the List of Messages stored by this MessageStore. */
   public void setMessages(List<Message> messages) {
     this.messages = messages;
+  }
+
+  /**
+   * Sets the ActivityFeedStore used by this servlet. This function provides a common setup method for use
+   * by the test framework or the servlet's init() function.
+   */
+  public void setActivityFeedStore(ActivityFeedStore activityFeedStore) {
+    this.activityFeedStore = activityFeedStore;
+  }
+
+  /**
+   * Sets the UserStore used by this servlet. This function provides a common setup method for use
+   * by the test framework or the servlet's init() function.
+   */
+  public void setUserStore(UserStore userStore) {
+    this.userStore = userStore;
+  }
+
+  /**
+   * Sets the ConversationStore used by this servlet. This function provides a common setup method for use
+   * by the test framework or the servlet's init() function.
+   */
+  public void setConversationStore(ConversationStore conversationStore) {
+    this.conversationStore = conversationStore;
   }
 }

@@ -14,10 +14,13 @@
 
 package codeu.model.store.basic;
 
+import codeu.model.data.Activity;
 import codeu.model.data.Conversation;
+import codeu.model.data.User;
 import codeu.model.store.persistence.PersistentStorageAgent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Store class that uses in-memory data structures to hold values and automatically loads from and
@@ -29,6 +32,9 @@ public class ConversationStore {
   /** Singleton instance of ConversationStore. */
   private static ConversationStore instance;
 
+  private static ActivityFeedStore activityFeedStore;
+
+  private static UserStore userStore;
   /**
    * Returns the singleton instance of ConversationStore that should be shared between all servlet
    * classes. Do not call this function from a test; use getTestInstance() instead.
@@ -45,8 +51,12 @@ public class ConversationStore {
    *
    * @param persistentStorageAgent a mock used for testing
    */
-  public static ConversationStore getTestInstance(PersistentStorageAgent persistentStorageAgent) {
-    return new ConversationStore(persistentStorageAgent);
+  public static ConversationStore getTestInstance(PersistentStorageAgent persistentStorageAgent,
+                                                  ActivityFeedStore activityFeedStore, UserStore userStore) {
+    ConversationStore inst = new ConversationStore(persistentStorageAgent);
+    inst.setActivityFeedStore(activityFeedStore);
+    inst.setUserStore(userStore);
+    return inst;
   }
 
   /**
@@ -62,6 +72,8 @@ public class ConversationStore {
   private ConversationStore(PersistentStorageAgent persistentStorageAgent) {
     this.persistentStorageAgent = persistentStorageAgent;
     conversations = new ArrayList<>();
+    activityFeedStore = ActivityFeedStore.getInstance();
+    userStore = UserStore.getInstance();
   }
 
 /** Access the current set of conversations known to the application. */
@@ -73,6 +85,11 @@ public class ConversationStore {
   public void addConversation(Conversation conversation) {
     conversations.add(conversation);
     persistentStorageAgent.writeThrough(conversation);
+    User user = userStore.getUser(conversation.getOwnerId());
+    if (user != null) {
+      String event = user.getName() + " created the conversation: " + conversation.getTitle();
+      activityFeedStore.addActivity(new Activity(event));
+    }
   }
 
   /** Check whether a Conversation title is already known to the application. */
@@ -96,8 +113,30 @@ public class ConversationStore {
     return null;
   }
 
+  /**
+   * Access the Conversation object with the given UUID.
+   *
+   * @return null if the UUID does not match any existing Conversation.
+   */
+  public Conversation getConversation(UUID id) {
+    for (Conversation conversation : conversations) {
+      if (conversation.getId().equals(id)) {
+        return conversation;
+      }
+    }
+    return null;
+  }
+
   /** Sets the List of Conversations stored by this ConversationStore. */
   public void setConversations(List<Conversation> conversations) {
     this.conversations = conversations;
+  }
+
+  public void setActivityFeedStore(ActivityFeedStore activityFeedStore) {
+    this.activityFeedStore = activityFeedStore;
+  }
+
+  public void setUserStore(UserStore userStore) {
+    this.userStore = userStore;
   }
 }
