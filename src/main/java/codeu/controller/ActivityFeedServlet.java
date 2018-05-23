@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,7 +26,6 @@ public class ActivityFeedServlet extends HttpServlet {
     public void init() throws ServletException {
         super.init();
         setActivityStore(ActivityFeedStore.getInstance());
-        System.out.println("hello");
     }
 
     /**
@@ -36,13 +34,8 @@ public class ActivityFeedServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
-        //Activity a = new Activity("hello world");
-        //activityStore.addActivity(a);
-        List<Activity> l = activityStore.getFeed();
-        System.out.println(l.size());
-        for (Activity n : l) {
-            System.out.println(n.getEvent());
-        }
+        List<Activity> activities = activityStore.getFeed();
+        request.setAttribute("activities",activities);
         request.getRequestDispatcher("/WEB-INF/view/activityfeed.jsp").forward(request, response);
     }
 

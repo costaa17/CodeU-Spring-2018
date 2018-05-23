@@ -17,6 +17,8 @@ package codeu.model.store.basic;
 import codeu.model.data.Activity;
 import codeu.model.data.User;
 import codeu.model.store.persistence.PersistentStorageAgent;
+
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -105,7 +107,7 @@ public class UserStore {
   public void addUser(User user) {
     users.add(user);
     persistentStorageAgent.writeThrough(user);
-    activityFeedStore.addActivity(new Activity(user.getName() + " joined"));
+    activityFeedStore.addActivity(new Activity(user.getName() + " joined", Instant.now()));
 
   }
 

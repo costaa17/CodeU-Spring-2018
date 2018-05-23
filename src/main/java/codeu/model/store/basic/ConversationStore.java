@@ -18,6 +18,8 @@ import codeu.model.data.Activity;
 import codeu.model.data.Conversation;
 import codeu.model.data.User;
 import codeu.model.store.persistence.PersistentStorageAgent;
+
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -88,7 +90,7 @@ public class ConversationStore {
     User user = userStore.getUser(conversation.getOwnerId());
     if (user != null) {
       String event = user.getName() + " created the conversation: " + conversation.getTitle();
-      activityFeedStore.addActivity(new Activity(event));
+      activityFeedStore.addActivity(new Activity(event, Instant.now()));
     }
   }
 
@@ -132,10 +134,18 @@ public class ConversationStore {
     this.conversations = conversations;
   }
 
+  /**
+   * Sets the ActivityFeedStore used by this servlet. This function provides a common setup method for use
+   * by the test framework or the servlet's init() function.
+   */
   public void setActivityFeedStore(ActivityFeedStore activityFeedStore) {
     this.activityFeedStore = activityFeedStore;
   }
 
+  /**
+   * Sets the UserStore used by this servlet. This function provides a common setup method for use
+   * by the test framework or the servlet's init() function.
+   */
   public void setUserStore(UserStore userStore) {
     this.userStore = userStore;
   }

@@ -1,9 +1,7 @@
 package codeu.model.store.basic;
 
 import codeu.model.data.Activity;
-import codeu.model.data.User;
 import codeu.model.store.persistence.PersistentStorageAgent;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,13 +13,12 @@ public class ActivityFeedStore {
     private static ActivityFeedStore instance;
 
     /**
-     * Returns the singleton instance of UserStore that should be shared between all servlet classes.
+     * Returns the singleton instance of ActivityFeedStore that should be shared between all servlet classes.
      * Do not call this function from a test; use getTestInstance() instead.
      */
     public static ActivityFeedStore getInstance() {
         if (instance == null) {
             instance = new ActivityFeedStore(PersistentStorageAgent.getInstance());
-            System.out.println("oh");
         }
         return instance;
     }
@@ -50,24 +47,25 @@ public class ActivityFeedStore {
     }
 
     /**
-     * Access the User object with the given name.
+     * Access the list of activities
      *
-     * @return null if username does not match any existing User.
+     * @return a list of existing activities sorted by the time they happened
      */
     public List<Activity> getFeed() {
         return activities;
     }
 
     /**
-     * Sets the List of Users stored by this UserStore. This should only be called once, when the data
+     * Sets the List of Activities stored by this ActivityFeedStore. This should only be called once, when the data
      * is loaded from Datastore.
      */
     public void setActivities(List<Activity> activities) {
         this.activities = activities;
     }
+
     /**
-     * Add a new user to the current set of users known to the application. This should only be called
-     * to add a new user, not to update an existing user.
+     * Add a new user to the current set of activities known to the application. This should only be called
+     * to add a new activity, not to update an existing activity.
      */
     public void addActivity(Activity activity) {
         activities.add(activity);

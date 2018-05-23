@@ -19,6 +19,8 @@ import codeu.model.data.Conversation;
 import codeu.model.data.Message;
 import codeu.model.data.User;
 import codeu.model.store.persistence.PersistentStorageAgent;
+
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -93,7 +95,7 @@ public class MessageStore {
     Conversation conversation = conversationStore.getConversation(message.getConversationId());
     if (user != null && conversation != null ) {
       String event = user.getName() + " sent a message to the conversation: " + conversation.getTitle();
-      activityFeedStore.addActivity(new Activity(event));
+      activityFeedStore.addActivity(new Activity(event, Instant.now()));
     }
   }
 

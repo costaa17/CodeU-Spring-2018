@@ -161,14 +161,15 @@ public class PersistentDataStore {
 
     List<Activity> activities = new ArrayList<>();
 
-    // Retrieve all messages from the datastore.
-    Query query = new Query("activity");
+    // Retrieve all activities from the datastore.
+    Query query = new Query("activity").addSort("time", SortDirection.ASCENDING);;
     PreparedQuery results = datastore.prepare(query);
-
     for (Entity entity : results.asIterable()) {
       try {
         String event = (String) entity.getProperty("event");
-        Activity activity = new Activity(event);
+        System.out.println(entity.getProperty("time"));
+        Instant time = Instant.parse((String) entity.getProperty("time"));
+        Activity activity = new Activity(event, Instant.now());
         activities.add(activity);
       } catch (Exception e) {
         // In a production environment, errors should be very rare. Errors which may
@@ -217,6 +218,7 @@ public class PersistentDataStore {
   public void writeThrough(Activity activity) {
     Entity activityEntity = new Entity("activity");
     activityEntity.setProperty("event", activity.getEvent());
+    activityEntity.setProperty("time", activity.getTime().toString());
     datastore.put(activityEntity);
   }
 }
