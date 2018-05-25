@@ -34,7 +34,7 @@ public class AdminServlet extends HttpServlet {
 	//this is to check for the users 
 
 	public void doGet (HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-		request.getRequestDispatcher("/login").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/admin.jsp").forward(request, response);
 
 	}
 
