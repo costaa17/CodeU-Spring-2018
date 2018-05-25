@@ -1,9 +1,6 @@
 package codeu.controller;
 
 import codeu.model.store.basic.ActivityFeedStore;
-import codeu.model.store.basic.ConversationStore;
-import codeu.model.store.basic.MessageStore;
-import codeu.model.store.basic.UserStore;
 import org.junit.Before;
 import org.mockito.Mockito;
 import org.junit.Test;
@@ -12,7 +9,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import org.junit.Assert;
 
 /**
  * Created by CostaA17 on 5/17/18.
@@ -46,9 +42,4 @@ public class ActivityFeedTest {
         Mockito.verify(mockRequestDispatcher).forward(mockRequest, mockResponse);
     }
 
-    @Test
-    public void testDoGet_userJoin() throws IOException, ServletException {
-        activityServlet.doGet(mockRequest, mockResponse);
-        Mockito.verify(mockRequestDispatcher).forward(mockRequest, mockResponse);
-    }
 }
