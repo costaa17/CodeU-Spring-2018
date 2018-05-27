@@ -1,6 +1,8 @@
 package codeu.controller;
 
-import codeu.model.data.Conversation;
+import codeu.model.data.Activity;
+import codeu.model.store.basic.ActivityFeedStore;
+import codeu.model.store.basic.UserStore;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,13 +16,31 @@ import java.util.List;
  */
 public class ActivityFeedServlet extends HttpServlet {
 
+    ActivityFeedStore activityStore;
+
     /**
-     * This function fires when a user navigates to the conversations page. It gets all of the
-     * conversations from the model and forwards to conversations.jsp for rendering the list.
+     * Set up state for handling registration-related requests. This method is only called when
+     * running in a server, not when running in a test.
+     */
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        setActivityStore(ActivityFeedStore.getInstance());
+    }
+
+    /**
+     * This function fires when a user navigates to the activity feed page.
      */
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
+        List<Activity> activities = activityStore.getFeed();
+        request.setAttribute("activities",activities);
         request.getRequestDispatcher("/WEB-INF/view/activityfeed.jsp").forward(request, response);
     }
+
+    public void setActivityStore(ActivityFeedStore activityStore) {
+        this.activityStore = activityStore;
+    }
+
 }

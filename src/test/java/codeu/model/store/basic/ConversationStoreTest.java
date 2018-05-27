@@ -15,6 +15,8 @@ public class ConversationStoreTest {
 
   private ConversationStore conversationStore;
   private PersistentStorageAgent mockPersistentStorageAgent;
+  private UserStore mockUserStore;
+  private ActivityFeedStore mockActivityFeedStore;
 
   private final Conversation CONVERSATION_ONE =
       new Conversation(
@@ -23,8 +25,10 @@ public class ConversationStoreTest {
   @Before
   public void setup() {
     mockPersistentStorageAgent = Mockito.mock(PersistentStorageAgent.class);
-    conversationStore = ConversationStore.getTestInstance(mockPersistentStorageAgent);
-
+    mockActivityFeedStore = ActivityFeedStore.getTestInstance(mockPersistentStorageAgent);
+    mockUserStore = UserStore.getTestInstance(mockPersistentStorageAgent, mockActivityFeedStore);
+    conversationStore = ConversationStore.getTestInstance(mockPersistentStorageAgent,
+            mockActivityFeedStore,mockUserStore);
     final List<Conversation> conversationList = new ArrayList<>();
     conversationList.add(CONVERSATION_ONE);
     conversationStore.setConversations(conversationList);
