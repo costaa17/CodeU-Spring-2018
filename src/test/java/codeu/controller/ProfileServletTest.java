@@ -7,17 +7,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hamcrest.CoreMatchers;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
-import codeu.model.data.User;
-import codeu.model.store.basic.UserStore;
-
-public class RegisterServletTest {
+public class ProfileServletTest {
 
   private RegisterServlet registerServlet;
   private HttpServletRequest mockRequest;
@@ -31,7 +25,7 @@ public class RegisterServletTest {
     mockResponse = Mockito.mock(HttpServletResponse.class);
     mockRequestDispatcher = Mockito.mock(RequestDispatcher.class);
     Mockito.when(mockRequest.getRequestDispatcher("/WEB-INF/view/profiles.jsp"))
-        .thenReturn(mockRequestDispatcher);
+            .thenReturn(mockRequestDispatcher);
   }
 
   @Test
@@ -39,3 +33,4 @@ public class RegisterServletTest {
     registerServlet.doGet(mockRequest, mockResponse);
     Mockito.verify(mockRequestDispatcher).forward(mockRequest, mockResponse);
   }
+}
