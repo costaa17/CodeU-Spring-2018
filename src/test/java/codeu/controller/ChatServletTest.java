@@ -333,7 +333,7 @@ public class ChatServletTest {
         .thenReturn(fakeConversation);
 
     Mockito.when(mockRequest.getParameter("message"))
-        .thenReturn("This message contains <script>malicious</script> content. We should remove nontext stuff like <div>this</div>");
+        .thenReturn("This message contains <script>malicious</script> content. We should remove nontext stuff like <img>this</img>");
 
     chatServlet.doPost(mockRequest, mockResponse);
 
@@ -342,6 +342,38 @@ public class ChatServletTest {
     
     Assert.assertEquals(
         "This message contains  content. We should remove nontext stuff like this", messageArgumentCaptor.getValue().getContent());
+
+    Mockito.verify(mockResponse).sendRedirect("/chat/test_conversation");
+  }
+
+  @Test
+  public void testAllowsDiv() throws IOException, ServletException {
+    Mockito.when(mockRequest.getRequestURI()).thenReturn("/chat/test_conversation");
+    Mockito.when(mockSession.getAttribute("user")).thenReturn("test_username");
+
+    User fakeUser =
+        new User(
+            UUID.randomUUID(),
+            "test_username",
+            "$2a$10$eDhncK/4cNH2KE.Y51AWpeL8/5znNBQLuAFlyJpSYNODR/SJQ/Fg6",
+            Instant.now());
+    Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
+
+    Conversation fakeConversation =
+        new Conversation(UUID.randomUUID(), UUID.randomUUID(), "test_conversation", Instant.now());
+    Mockito.when(mockConversationStore.getConversationWithTitle("test_conversation"))
+        .thenReturn(fakeConversation);
+
+    Mockito.when(mockRequest.getParameter("message"))
+        .thenReturn("This message contains the colored word <div class='red'>red</div>");
+
+    chatServlet.doPost(mockRequest, mockResponse);
+
+    ArgumentCaptor<Message> messageArgumentCaptor = ArgumentCaptor.forClass(Message.class);
+    Mockito.verify(mockMessageStore).addMessage(messageArgumentCaptor.capture());
+    
+    Assert.assertEquals(
+        "This message contains the colored word <div class=\"red\">red</div>", messageArgumentCaptor.getValue().getContent());
 
     Mockito.verify(mockResponse).sendRedirect("/chat/test_conversation");
   }

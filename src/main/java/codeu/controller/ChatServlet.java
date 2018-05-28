@@ -178,7 +178,11 @@ public class ChatServlet extends HttpServlet {
 
     // this removes all HTML tags except for text nodes (a, b, blockquote, li, ol)
     // reference for this whitelist can be found here: https://jsoup.org/apidocs/org/jsoup/safety/Whitelist.html#basic--
-    String cleanedMessageContent = Jsoup.clean(messageContent, "", Whitelist.basic(), settings);
+    Whitelist list = Whitelist.basic();
+    list.addTags("div");
+    list.addAttributes("div", "class");
+
+    String cleanedMessageContent = Jsoup.clean(messageContent, "", list, settings);
     
     // this updates urls to be hyperlink references
     cleanedMessageContent = replaceUrls(cleanedMessageContent);
