@@ -16,6 +16,9 @@ public class MessageStoreTest {
 
   private MessageStore messageStore;
   private PersistentStorageAgent mockPersistentStorageAgent;
+  private ActivityFeedStore mockActivityFeedStore;
+  private UserStore mockUserStore;
+  private ConversationStore mockConversationStore;
 
   private final UUID CONVERSATION_ID_ONE = UUID.randomUUID();
   private final Message MESSAGE_ONE =
@@ -42,8 +45,13 @@ public class MessageStoreTest {
 
   @Before
   public void setup() {
+    mockActivityFeedStore = Mockito.mock(ActivityFeedStore.class);
+    mockUserStore = Mockito.mock(UserStore.class);
+    mockConversationStore = Mockito.mock(ConversationStore.class);
+
     mockPersistentStorageAgent = Mockito.mock(PersistentStorageAgent.class);
-    messageStore = MessageStore.getTestInstance(mockPersistentStorageAgent);
+    messageStore = MessageStore.getTestInstance(mockPersistentStorageAgent, mockActivityFeedStore,
+            mockConversationStore, mockUserStore);
 
     final List<Message> messageList = new ArrayList<>();
     messageList.add(MESSAGE_ONE);

@@ -15,6 +15,7 @@ public class UserStoreTest {
 
   private UserStore userStore;
   private PersistentStorageAgent mockPersistentStorageAgent;
+  private ActivityFeedStore mockActivityFeedStore;
 
   private final User USER_ONE =
       new User(
@@ -37,8 +38,10 @@ public class UserStoreTest {
 
   @Before
   public void setup() {
+    mockActivityFeedStore = Mockito.mock(ActivityFeedStore.class);
+
     mockPersistentStorageAgent = Mockito.mock(PersistentStorageAgent.class);
-    userStore = UserStore.getTestInstance(mockPersistentStorageAgent);
+    userStore = UserStore.getTestInstance(mockPersistentStorageAgent, mockActivityFeedStore);
 
     final List<User> userList = new ArrayList<>();
     userList.add(USER_ONE);

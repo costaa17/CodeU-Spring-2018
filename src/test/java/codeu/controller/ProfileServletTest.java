@@ -7,20 +7,21 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import codeu.model.store.basic.ActivityFeedStore;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
 public class ProfileServletTest {
 
-  private RegisterServlet registerServlet;
+  private ProfilePageServlet profilePageServlet;
   private HttpServletRequest mockRequest;
   private HttpServletResponse mockResponse;
   private RequestDispatcher mockRequestDispatcher;
 
   @Before
   public void setup() {
-    registerServlet = new RegisterServlet();
+    profilePageServlet = new ProfilePageServlet();
     mockRequest = Mockito.mock(HttpServletRequest.class);
     mockResponse = Mockito.mock(HttpServletResponse.class);
     mockRequestDispatcher = Mockito.mock(RequestDispatcher.class);
@@ -30,7 +31,9 @@ public class ProfileServletTest {
 
   @Test
   public void testDoGet() throws IOException, ServletException {
-    registerServlet.doGet(mockRequest, mockResponse);
+    profilePageServlet.doGet(mockRequest, mockResponse);
     Mockito.verify(mockRequestDispatcher).forward(mockRequest, mockResponse);
   }
 }
+
+
