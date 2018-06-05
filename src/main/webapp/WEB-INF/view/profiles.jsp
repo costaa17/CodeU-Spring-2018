@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
+      <% if (user != null) {%>
+           <title><%= user.getName() %></
+    
         <title>User Profile</title>
     </head>
     <body>

@@ -8,8 +8,44 @@ import java.io.IOException;
 
 /**
  * Created by alexandriastorm on 5/22/18.
+  * Updated by alexandriastorm on 6/5/18.
  */
 public class ProfilePageServlet extends HttpServlet {
+
+
+    /** Store class that gives access to Conversations. */
+    private ConversationStore conversationStore;
+
+    /** Store class that gives access to Messages. */
+    private MessageStore messageStore;
+
+    /** Store class that gives access to Users. */
+    private UserStore userStore;
+
+
+// Establishes ConversationStore using the Servlet
+    void setConversationStore(ConversationStore conversationStore) {
+       this.conversationStore = conversationStore;
+     }
+
+     // Establishes UserStore using the Servlet
+     void setUserStore(UserStore userStore) {
+      this.userStore = userStore;
+}
+// Establishes MessageStore using the Servlet
+void setMessageStore(MessageStore messageStore) {
+   this.messageStore = messageStore;
+ }
+
+
+   /* Set up state for handling profile requests.*/
+  @Override
+  public void init() throws ServletException {
+    super.init();
+    setUserStore(UserStore.getInstance());
+    setConversationStore(ConversationStore.getInstance());
+    setMessageStore(MessageStore.getInstance());
+  }
 
     /**
      * This function fires when a user navigates to a user's profile page. It gets all of the
