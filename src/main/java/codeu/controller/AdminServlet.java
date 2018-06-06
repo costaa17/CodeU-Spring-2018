@@ -56,20 +56,8 @@ public class AdminServlet extends HttpServlet {
 			return;
 		}
 		
-                //set accepted names
-                //String[] adminNames = {"AlexandriaStorm", "AnaVitoriadoValleCosta", "EmilyArroyo", "GavinLifrieri", "KevinWorkman"};
- 		 //check to see if an admin
-                //boolean result = Arrays.stream(adminNames).anyMatch(user::equals);
-                //if (!result){
-                  //      request.setAttribute("error", "That username does not belong to an admin.");
-                    //    request.getRequestDispatcher("WEB-INF/view/login.jsp").forward(request, response);
-                        
-                      //  return;
-               // }
 
-                //request.getSession().setAttribute("user", username);
                 response.sendRedirect("/admin");
-		//request.getRequestDispatcher("/WEB-INF/view/admin.jsp").forward(request,response);
                
 	}
 }
