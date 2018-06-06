@@ -50,28 +50,33 @@
         for your CodeU project team work. Here's some stuff to think about:
       </p>
 
+      <h1>The Students of Team 18!</h1>
       <ul>
-        <li><strong>Algorithms and data structures:</strong> We've made the app
-            and the code as simple as possible. You will have to extend the
-            existing data structures to support your enhancements to the app,
-            and also make changes for performance and scalability as your app
-            increases in complexity.</li>
-        <li><strong>Look and feel:</strong> The focus of CodeU is on the Java
-          side of things, but if you're particularly interested you might use
-          HTML, CSS, and JavaScript to make the chat app prettier.</li>
-        <li><strong>Customization:</strong> Think about a group you care about.
-          What needs do they have? How could you help? Think about technical
-          requirements, privacy concerns, and accessibility and
-          internationalization.</li>
+        <li>
+          <strong>Alexandria Storm: </strong> Alexandria is a student at University of California, Berkeley. She enjoys Photography, listening to Kehlani, Hayley Kiyoko and Beyonce, and watching Jane the Virgin!
+        </li>
+        <li>
+          <strong>Ana Vitorio do Valle Costa: </strong> Ana studies at University of Washington and plans to major in computer engineering.
+        </li>
+        <li>
+          <strong>Emily Arroyo: </strong> Emily is at student at Columbia University and intends to study Computer Science and minor in economics. She enjoys spending time with family and friends, running, and adventuring in her free time.
+        </li>
+        <li>
+          <strong>Gavin Lifrieri: </strong> Gavin is a Computer Science concentrator at Harvard University. He enjoys skateboarding in his free time.
+        </li>
+        <li>
+          <strong>Kevin Workman: </strong> Kevin works for Google Maps and has been a CodeU advisor for two years. He still has no idea what he's doing most of the time.
+        </li>
       </ul>
 
-      <p>
-        This is your code now. Get familiar with it and get comfortable
-        working with your team to plan and make changes. Start by updating the
-        homepage and this about page to tell your users more about your team.
-        This page should also be used to describe the features and improvements
-        you've added.
-      </p>
+      <h1>Changelist</h1>
+
+      <h3>Week 0 (5/6-5/13)</h3>
+      <ul>
+        <li>Updated about page with temporary bios, and changelist organized by week</li>
+        <li>Updated index page with team name and team members</li>
+        <li>Deployed to Google AppEngine</li>
+      </ul>
     </div>
   </div>
 </body>

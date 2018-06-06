@@ -14,8 +14,11 @@
 
 package codeu.model.store.basic;
 
+import codeu.model.data.Activity;
 import codeu.model.data.User;
 import codeu.model.store.persistence.PersistentStorageAgent;
+
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -30,6 +33,7 @@ public class UserStore {
   /** Singleton instance of UserStore. */
   private static UserStore instance;
 
+  private static ActivityFeedStore activityFeedStore;
   /**
    * Returns the singleton instance of UserStore that should be shared between all servlet classes.
    * Do not call this function from a test; use getTestInstance() instead.
@@ -46,8 +50,10 @@ public class UserStore {
    *
    * @param persistentStorageAgent a mock used for testing
    */
-  public static UserStore getTestInstance(PersistentStorageAgent persistentStorageAgent) {
-    return new UserStore(persistentStorageAgent);
+  public static UserStore getTestInstance(PersistentStorageAgent persistentStorageAgent, ActivityFeedStore activityFeedStore) {
+    UserStore inst = new UserStore(persistentStorageAgent);
+    inst.setActivityFeedStore(activityFeedStore);
+    return inst;
   }
 
   /**
@@ -61,6 +67,7 @@ public class UserStore {
   /** This class is a singleton, so its constructor is private. Call getInstance() instead. */
   private UserStore(PersistentStorageAgent persistentStorageAgent) {
     this.persistentStorageAgent = persistentStorageAgent;
+    activityFeedStore = ActivityFeedStore.getInstance();
     users = new ArrayList<>();
   }
 
@@ -100,6 +107,8 @@ public class UserStore {
   public void addUser(User user) {
     users.add(user);
     persistentStorageAgent.writeThrough(user);
+    activityFeedStore.addActivity(new Activity(user.getName() + " joined", Instant.now()));
+
   }
 
   /**
@@ -125,6 +134,14 @@ public class UserStore {
    */
   public void setUsers(List<User> users) {
     this.users = users;
+  }
+
+  /**
+   * Sets the UserStore used by this servlet. This function provides a common setup method for use
+   * by the test framework or the servlet's init() function.
+   */
+  public void setActivityFeedStore(ActivityFeedStore activityFeedStore) {
+    this.activityFeedStore = activityFeedStore;
   }
 }
 

@@ -24,13 +24,15 @@ import java.io.IOException;
 import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
+import java.util.ArrayList;
+import java.util.regex.*;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document.OutputSettings;
 import org.jsoup.safety.Whitelist;
-
 /** Servlet class responsible for the chat page. */
 public class ChatServlet extends HttpServlet {
 
@@ -74,6 +76,36 @@ public class ChatServlet extends HttpServlet {
    */
   void setUserStore(UserStore userStore) {
     this.userStore = userStore;
+  }
+
+  public static String replaceUrls(String text){
+    String newText = text;
+    ArrayList<String> containedUrls = new ArrayList<String>();
+    // regular expression taken from https://stackoverflow.com/questions/5713558/detect-and-extract-url-from-a-string
+    // matches with ftp, http, https, and www prefixed urls
+    Pattern pattern = Pattern.compile(
+       "(?:^|[\\W])((ht|f)tp(s?):\\/\\/|www\\.)"
+                + "(([\\w\\-]+\\.){1,}?([\\w\\-.~]+\\/?)*"
+                + "[\\p{Alnum}.,%_=?&#\\-+()\\[\\]\\*$~@!:/{};']*)",
+                Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
+    Matcher urlMatcher = pattern.matcher(text);
+
+    while (urlMatcher.find())
+    {
+        containedUrls.add(text.substring(urlMatcher.start(0),
+                urlMatcher.end(0)));
+    }
+
+    // iterate backwards over containedUrls to update the text with <a></a> tags
+    for (int i = containedUrls.size()-1; i >=0; i--){
+      int index = text.lastIndexOf(containedUrls.get(i));
+      //remove this instance of the url from the original text:
+      text = text.substring(0,index) + text.substring(index + containedUrls.get(i).length());
+      //update the instance of the url in the new text:
+      newText = newText.substring(0,index) + "<a href='" + containedUrls.get(i) + "'>" 
+              + containedUrls.get(i) + "</a>" + newText.substring(index + containedUrls.get(i).length());
+    }
+    return newText;
   }
 
   /**
@@ -140,8 +172,17 @@ public class ChatServlet extends HttpServlet {
 
     String messageContent = request.getParameter("message");
 
-    // this removes any HTML from the message content
-    String cleanedMessageContent = Jsoup.clean(messageContent, Whitelist.none());
+    // adjusted settings for cleaning done by Jsoup
+    OutputSettings settings = new OutputSettings();
+    settings.prettyPrint(false);  
+
+    // this removes all HTML tags except for text nodes (a, b, blockquote, li, ol)
+    // reference for this whitelist can be found here: https://jsoup.org/apidocs/org/jsoup/safety/Whitelist.html#basic--
+    String cleanedMessageContent = Jsoup.clean(messageContent, "", Whitelist.basic(), settings);
+    
+    // this updates urls to be hyperlink references
+    cleanedMessageContent = replaceUrls(cleanedMessageContent);
+
 
     Message message =
         new Message(

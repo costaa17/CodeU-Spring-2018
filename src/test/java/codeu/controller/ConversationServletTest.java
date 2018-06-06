@@ -16,6 +16,7 @@ package codeu.controller;
 
 import codeu.model.data.Conversation;
 import codeu.model.data.User;
+import codeu.model.store.basic.ActivityFeedStore;
 import codeu.model.store.basic.ConversationStore;
 import codeu.model.store.basic.UserStore;
 import java.io.IOException;
@@ -43,6 +44,7 @@ public class ConversationServletTest {
   private RequestDispatcher mockRequestDispatcher;
   private ConversationStore mockConversationStore;
   private UserStore mockUserStore;
+  private ActivityFeedStore mockActivityFeedStore;
 
   @Before
   public void setup() {
@@ -62,6 +64,9 @@ public class ConversationServletTest {
 
     mockUserStore = Mockito.mock(UserStore.class);
     conversationServlet.setUserStore(mockUserStore);
+
+    mockActivityFeedStore = Mockito.mock(ActivityFeedStore.class);
+    mockUserStore.setActivityFeedStore(mockActivityFeedStore);
   }
 
   @Test
