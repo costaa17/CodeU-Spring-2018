@@ -2,6 +2,8 @@
 <html>
     <head>
         <body>
+    <% if (user != null) {%>
+           <title><%= user.getName() %></
 
   <nav>
     <a id="navTitle" href="/">CodeU Chat App</a>
@@ -18,12 +20,5 @@
   </nav>
 
 
-      <% if (user != null) {%>
-           <title><%= user.getName() %></
-    
-        <title>User Profile</title>
-    </head>
-    <body>
-        <h1>This is the user's profile.<h1>
-    </body>
+
 <html>
