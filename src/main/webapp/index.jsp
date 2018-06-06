@@ -26,6 +26,7 @@
     <a href="/conversations">Conversations</a>
     <% if(request.getSession().getAttribute("user") != null){ %>
       <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
+      <a href="/profiles">Profiles</a>
     <% } else{ %>
       <a href="/login">Login</a>
     <% } %>
@@ -43,10 +44,7 @@
         <li><a href="/login">Login</a> to get started.</li>
         <li>Go to the <a href="/conversations">conversations</a> page to
             create or join a conversation.</li>
-
-         <li>Go to the <a href="/profiles.jsp">profiles</a> page to
-                 view user profiles.</li>
-
+        <li>View the <a href="/profiles">profiles</a> page to see user profiles.</li>
         <li>View the <a href="/about.jsp">about</a> page to learn more about the
             project.</li>
       </ul>
