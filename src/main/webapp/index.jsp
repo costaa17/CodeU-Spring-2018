@@ -44,7 +44,7 @@
         <li>Go to the <a href="/conversations">conversations</a> page to
             create or join a conversation.</li>
 
-         <li>Go to the <a href="/Profiles">profiles</a> page to
+         <li>Go to the <a href="/profiles.jsp">profiles</a> page to
                  view user profiles.</li>
 
         <li>View the <a href="/about.jsp">about</a> page to learn more about the
