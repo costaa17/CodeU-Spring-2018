@@ -44,7 +44,11 @@
         <li><a href="/login">Login</a> to get started.</li>
         <li>Go to the <a href="/conversations">conversations</a> page to
             create or join a conversation.</li>
-        <li>View the <a href="/profiles">profiles</a> page to see user profiles.</li>
+            <% if(request.getSession().getAttribute("user") != null){ %>
+                         <li>View the <a href="/profiles">profiles</a> page to see user profiles.<li>
+            <%  } %>
+
+
         <li>View the <a href="/about.jsp">about</a> page to learn more about the
             project.</li>
       </ul>

@@ -58,5 +58,6 @@ void setMessageStore(MessageStore messageStore) {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
         request.getRequestDispatcher("/WEB-INF/view/profiles.jsp").forward(request, response);
+        request.setAttribute("users", UserStore.getUsersList());
     }
 }

@@ -62,13 +62,17 @@ public class UserStore {
   private PersistentStorageAgent persistentStorageAgent;
 
   /** The in-memory list of Users. */
-  private List<User> users;
+  private static List<User> users;
 
   /** This class is a singleton, so its constructor is private. Call getInstance() instead. */
   private UserStore(PersistentStorageAgent persistentStorageAgent) {
     this.persistentStorageAgent = persistentStorageAgent;
     activityFeedStore = ActivityFeedStore.getInstance();
     users = new ArrayList<>();
+  }
+
+  public static List<User> getUsersList(){
+    return users;
   }
 
   /**

@@ -17,7 +17,14 @@
   limitations under the License.
 --%>
 <%@ page import="java.util.List" %>
-<%@ page import="codeu.model.data.Conversation" %>
+<%@ page import="codeu.model.data.User" %>
+<%@ page import="codeu.model.store.basic.UserStore" %>
+
+
+<%
+User user = (User) request.getAttribute("user");
+%>
+
 
 
 <!DOCTYPE html>
@@ -27,6 +34,17 @@
   <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
+
+  <script>
+    // scroll the chat div to the bottom
+    function scrollChat() {
+      var chatDiv = document.getElementById('chat');
+      chatDiv.scrollTop = chatDiv.scrollHeight;
+    };
+  </script>
+</head>
+<body onload="scrollChat()">
+
 
   <nav>
     <a id="navTitle" href="/">CodeU Chat App</a>
@@ -40,43 +58,16 @@
   </nav>
 
 
-  <html>
-      <head>
-          <title>Profile Page</title>
-      </head>
-      <body>
-          <h1>Welcome the Profile Page<h1>
+    <h1>Profiles</h1>
 
+  <%
+    List<User> list = UserStore.getUsersList();
+    for (int i = 0; i < UserStore.getUsersList().size(); i++) {
+      String currUser = list.get(i).getName();
+      out.println((i + 1) + ".) User Name: " + currUser);
+      out.print("<br/>");
+    }
+  %>
 
-           <%List<User> users =
-                        (List<User>) request.getAttribute("users");
-                      if(profiles == null || activities.isEmpty()){
-                      %>
-                        <p>No friends yet</p>
-                      <%
-                      }
-                      else{
-                      %>
-                        <ul class="profile-list">
-                      <%
-                        for(Profile profile : profiles){
-                      %>
-                        <li><%= "Name " + user.get() + ": " + profiles.getEvent() %></li>
-                      <%
-                        }
-                      %>
-                        </ul>
-                      <%
-                      }
-                      %>
-
-
-
-
-
-
-
-
-     </body>
-  <html>
-
+    </body>
+    </html>

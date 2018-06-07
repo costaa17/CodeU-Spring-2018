@@ -24,6 +24,7 @@ public class User {
   private final String passwordHash;
   private final Instant creation;
 
+
   /**
    * Constructs a new User.
    *
@@ -37,6 +38,8 @@ public class User {
     this.name = name;
     this.passwordHash = passwordHash;
     this.creation = creation;
+
+
   }
 
   /** Returns the ID of this User. */
@@ -58,4 +61,7 @@ public class User {
   public Instant getCreationTime() {
     return creation;
   }
+
+
 }
+
