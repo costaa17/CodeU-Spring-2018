@@ -1,6 +1,3 @@
-<%@ page import="java.util.List" %>
-
-
 <%--
   Copyright 2017 Google Inc.
 
@@ -35,17 +32,6 @@ User user = (User) request.getAttribute("user");
 </head>
 <body>
 
-  <script>
-    // scroll the chat div to the bottom
-    function scrollChat() {
-      var chatDiv = document.getElementById('chat');
-      chatDiv.scrollTop = chatDiv.scrollHeight;
-    };
-  </script>
-</head>
-<body onload="scrollChat()">
-
-
   <nav>
     <a id="navTitle" href="/">CodeU Chat App</a>
     <a href="/conversations">Conversations</a>
@@ -57,17 +43,13 @@ User user = (User) request.getAttribute("user");
     <a href="/about.jsp">About</a>
   </nav>
 
-
     <h1>Profiles</h1>
 
-  <%
-    List<User> list = UserStore.getUsersList();
-    for (int i = 0; i < UserStore.getUsersList().size(); i++) {
-      String currUser = list.get(i).getName();
-      out.println((i + 1) + ".) User Name: " + currUser);
-      out.print("<br/>");
-    }
-  %>
+<% List<User> list = UserStore.getInstance().getUsersList();
+    for (int i = 0; i < list.size(); i++) {
+      String currUser = list.get(i).getName(); %>
+      <li>User name: <%= currUser %> </li>
+<% } %>
 
     </body>
     </html>
