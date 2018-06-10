@@ -179,6 +179,9 @@ public class ChatServlet extends HttpServlet {
     // this removes all HTML tags except for text nodes (a, b, blockquote, li, ol)
     // reference for this whitelist can be found here: https://jsoup.org/apidocs/org/jsoup/safety/Whitelist.html#basic--
     Whitelist list = Whitelist.basic();
+
+    // Divs will serve as the way of adding color styling for the text.
+    // A colored section will be indicated by a div with the class tag of the appropriate color.
     list.addTags("div");
     list.addAttributes("div", "class");
 
