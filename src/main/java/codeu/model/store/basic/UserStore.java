@@ -71,6 +71,10 @@ public class UserStore {
     users = new ArrayList<>();
   }
 
+  public List<User> getUsersList(){
+    return users;
+  }
+
   /**
    * Access the User object with the given name.
    *
