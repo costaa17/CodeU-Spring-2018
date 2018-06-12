@@ -37,41 +37,6 @@ public class AdminServlet extends HttpServlet {
 		request.getRequestDispatcher("/WEB-INF/view/admin.jsp").forward(request, response);
 
 	}
-
- 	@Override
-        //this checks to see if the user is one of the admins
-        public void doPost (HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-                String username = (String) request.getSession().getAttribute("user");
-		if (username == null){
-			// user is not logged in 
-			response.sendRedirect("/login");
-			return;
-		}
-		
-		User user = userStore.getUser(username);
-		if (user == null) {
-			//user not found
-			System.out.println("User not found:" + username);
-			response.sendRedirect("/login");
-			return;
-		}
-		
-                //set accepted names
-                //String[] adminNames = {"AlexandriaStorm", "AnaVitoriadoValleCosta", "EmilyArroyo", "GavinLifrieri", "KevinWorkman"};
- 		 //check to see if an admin
-                //boolean result = Arrays.stream(adminNames).anyMatch(user::equals);
-                //if (!result){
-                  //      request.setAttribute("error", "That username does not belong to an admin.");
-                    //    request.getRequestDispatcher("WEB-INF/view/login.jsp").forward(request, response);
-                        
-                      //  return;
-               // }
-
-                //request.getSession().setAttribute("user", username);
-                response.sendRedirect("/admin");
-		//request.getRequestDispatcher("/WEB-INF/view/admin.jsp").forward(request,response);
-               
-	}
 }
 
 	
