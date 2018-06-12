@@ -56,3 +56,19 @@ input {
 button {
   font-size: 18px;
 }
+
+.red {
+  color: red;
+}
+
+.blue {
+  color: blue;
+}
+
+.yellow {
+  color: yellow;
+}
+
+.green {
+  color: green;
+}
