@@ -38,28 +38,6 @@ public class AdminServlet extends HttpServlet {
 
 	}
 
- 	@Override
-        //this checks to see if the user is one of the admins
-        public void doPost (HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-                String username = (String) request.getSession().getAttribute("user");
-		if (username == null){
-			// user is not logged in 
-			response.sendRedirect("/login");
-			return;
-		}
-		
-		User user = userStore.getUser(username);
-		if (user == null) {
-			//user not found
-			System.out.println("User not found:" + username);
-			response.sendRedirect("/login");
-			return;
-		}
-		
-
-                response.sendRedirect("/admin");
-               
-	}
 }
 
 	
