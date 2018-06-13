@@ -15,9 +15,9 @@ import java.io.IOException;
 import java.time.Instant;
 import java.util.UUID;
 
-public class ProfileServletTest {
+public class ProfileListServletTest {
 
-    private ProfilePageServlet profilePageServlet;
+    private ProfileListServlet profileListServlet;
     private UserStore mockUserStore;
     private HttpServletRequest mockRequest;
     private HttpServletResponse mockResponse;
@@ -27,7 +27,7 @@ public class ProfileServletTest {
 
     @Before
     public void setup() {
-        profilePageServlet = new ProfilePageServlet();
+        profileListServlet = new ProfileListServlet();
         mockRequest = Mockito.mock(HttpServletRequest.class);
         mockResponse = Mockito.mock(HttpServletResponse.class);
         mockRequestDispatcher = Mockito.mock(RequestDispatcher.class);
@@ -38,7 +38,7 @@ public class ProfileServletTest {
 
     @Test
     public void testDoGet() throws IOException, ServletException {
-        profilePageServlet.doGet(mockRequest, mockResponse);
+        profileListServlet.doGet(mockRequest, mockResponse);
         Mockito.verify(mockRequestDispatcher).forward(mockRequest, mockResponse);
 
         User testUser = new User(UUID.randomUUID(), "Test User", "Test Password", Instant.now());
@@ -46,7 +46,7 @@ public class ProfileServletTest {
         mockConversationStore = Mockito.mock(ConversationStore.class);
 
         mockUserStore = Mockito.mock(UserStore.class);
-        profilePageServlet.setUserStore(mockUserStore);
+        profileListServlet.setUserStore(mockUserStore);
         Mockito.when(mockUserStore.getUser("Test User")).thenReturn(testUser);
 
         String username = mockRequest.getParameter("username");
