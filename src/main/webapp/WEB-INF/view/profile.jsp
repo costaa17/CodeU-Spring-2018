@@ -15,7 +15,6 @@
 --%>
 <%@ page import="java.util.List" %>
 <%@ page import="codeu.model.data.User" %>
-<%@ page import="codeu.model.store.basic.UserStore" %>
 
 
 <%
@@ -43,7 +42,7 @@ User user = (User) request.getAttribute("user");
     <a href="/about.jsp">About</a>
   </nav>
 
-    <h1>Profiles</h1>
+    <h1>Profile</h1>
 
     <p>Username: <%= user%></p>
 

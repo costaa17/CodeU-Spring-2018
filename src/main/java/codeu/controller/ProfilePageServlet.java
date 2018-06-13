@@ -13,19 +13,9 @@ import java.io.IOException;
 
 /**
  * Created by alexandriastorm on 5/22/18.
+ * Servlet that handles /profile/<user> path. Returns the profile of a user
  */
 public class ProfilePageServlet extends HttpServlet {
-
-
-    /**
-     * Store class that gives access to Conversations.
-     */
-    private ConversationStore conversationStore;
-
-    /**
-     * Store class that gives access to Messages.
-     */
-    private MessageStore messageStore;
 
     /**
      * Store class that gives access to Users.
@@ -57,25 +47,15 @@ public class ProfilePageServlet extends HttpServlet {
         String requestUrl = request.getRequestURI();
         String userTitle = requestUrl.substring("/profile/".length());
 
-
-        // Otherwise, they are looking for the profile of a particular user
-        // We will render the profile page for said user, given by profile.jsp (as opposed to profiles.jsp)
         User user = userStore.getUser(userTitle);
 
         if (user == null){
-            // cannot find user with name, redirect to homepage:
+            // cannot find user with name, redirect to profile list:
             System.out.println("User was null: " + userTitle);
-            response.sendRedirect("/");
+            response.sendRedirect("/profiles");
         }
 
         request.setAttribute("user", user);
-        request.setAttribute("users", UserStore.getInstance().getUsersList());
         request.getRequestDispatcher("/WEB-INF/view/profile.jsp").forward(request, response);
-    
-        
-
-
-
-
     }
 }

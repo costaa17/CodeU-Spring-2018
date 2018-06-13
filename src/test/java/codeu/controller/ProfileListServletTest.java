@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.Instant;
 import java.util.UUID;
+import java.util.List;
+import java.util.ArrayList;
 
 public class ProfileListServletTest {
 
@@ -38,16 +40,18 @@ public class ProfileListServletTest {
 
     @Test
     public void testDoGet() throws IOException, ServletException {
-        profileListServlet.doGet(mockRequest, mockResponse);
-        Mockito.verify(mockRequestDispatcher).forward(mockRequest, mockResponse);
+
 
         User testUser = new User(UUID.randomUUID(), "Test User", "Test Password", Instant.now());
+        List <User> testList = new ArrayList();
+        testList.add(testUser);
 
         mockConversationStore = Mockito.mock(ConversationStore.class);
 
         mockUserStore = Mockito.mock(UserStore.class);
         profileListServlet.setUserStore(mockUserStore);
         Mockito.when(mockUserStore.getUser("Test User")).thenReturn(testUser);
+        Mockito.when(mockUserStore.getUsersList()).thenReturn(testList);
 
         String username = mockRequest.getParameter("username");
         Mockito.when(username).thenReturn("Test User");
@@ -55,5 +59,7 @@ public class ProfileListServletTest {
         Mockito.when(mockRequest.getParameter("password")).thenReturn("Test Password");
         Mockito.when(mockRequest.getRequestURI()).thenReturn("/users/test Test User");
 
+        profileListServlet.doGet(mockRequest, mockResponse);
+        Mockito.verify(mockRequestDispatcher).forward(mockRequest, mockResponse);
     }
 }

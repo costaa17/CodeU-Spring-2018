@@ -10,22 +10,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by gavinlifrieri on 6/12/18.
+ * Servlet fires when user navigates to /profiles and renders list of all profiles.
  */
 public class ProfileListServlet extends HttpServlet {
-
-
-    /**
-     * Store class that gives access to Conversations.
-     */
-    private ConversationStore conversationStore;
-
-    /**
-     * Store class that gives access to Messages.
-     */
-    private MessageStore messageStore;
 
     /**
      * Store class that gives access to Users.
@@ -54,7 +45,8 @@ public class ProfileListServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
 
-            request.setAttribute("users", UserStore.getInstance());
+            List<User> list = userStore.getUsersList();
+            request.setAttribute("users", list);
             request.getRequestDispatcher("/WEB-INF/view/profiles.jsp").forward(request, response);
 
     }
