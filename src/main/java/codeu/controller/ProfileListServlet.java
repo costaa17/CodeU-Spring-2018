@@ -10,12 +10,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 /**
- * Created by alexandriastorm on 5/22/18.
- * Servlet that handles /profile/<user> path. Returns the profile of a user
+ * Created by gavinlifrieri on 6/12/18.
+ * Servlet fires when user navigates to /profiles and renders list of all profiles.
  */
-public class ProfilePageServlet extends HttpServlet {
+public class ProfileListServlet extends HttpServlet {
 
     /**
      * Store class that gives access to Users.
@@ -37,25 +38,16 @@ public class ProfilePageServlet extends HttpServlet {
     }
 
     /**
-     * This function fires when a user navigates to a user's profile page. It gets all of the
+     * This function fires when a user navigates to the /profiles. It gets all of the
      * user's information and bio from the model and forwards to profiles.jsp for rendering the list.
      */
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
 
-        String requestUrl = request.getRequestURI();
-        String userTitle = requestUrl.substring("/profile/".length());
+            List<User> list = userStore.getUsersList();
+            request.setAttribute("users", list);
+            request.getRequestDispatcher("/WEB-INF/view/profiles.jsp").forward(request, response);
 
-        User user = userStore.getUser(userTitle);
-
-        if (user == null){
-            // cannot find user with name, redirect to profile list:
-            System.out.println("User was null: " + userTitle);
-            response.sendRedirect("/profiles");
-        }
-
-        request.setAttribute("user", user);
-        request.getRequestDispatcher("/WEB-INF/view/profile.jsp").forward(request, response);
     }
 }

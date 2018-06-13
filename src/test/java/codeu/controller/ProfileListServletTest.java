@@ -14,10 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.Instant;
 import java.util.UUID;
+import java.util.List;
+import java.util.ArrayList;
 
-public class ProfileServletTest {
+public class ProfileListServletTest {
 
-    private ProfilePageServlet profilePageServlet;
+    private ProfileListServlet profileListServlet;
     private UserStore mockUserStore;
     private HttpServletRequest mockRequest;
     private HttpServletResponse mockResponse;
@@ -27,7 +29,7 @@ public class ProfileServletTest {
 
     @Before
     public void setup() {
-        profilePageServlet = new ProfilePageServlet();
+        profileListServlet = new ProfileListServlet();
         mockRequest = Mockito.mock(HttpServletRequest.class);
         mockResponse = Mockito.mock(HttpServletResponse.class);
         mockRequestDispatcher = Mockito.mock(RequestDispatcher.class);
@@ -38,16 +40,18 @@ public class ProfileServletTest {
 
     @Test
     public void testDoGet() throws IOException, ServletException {
-        profilePageServlet.doGet(mockRequest, mockResponse);
-        Mockito.verify(mockRequestDispatcher).forward(mockRequest, mockResponse);
+
 
         User testUser = new User(UUID.randomUUID(), "Test User", "Test Password", Instant.now());
+        List <User> testList = new ArrayList();
+        testList.add(testUser);
 
         mockConversationStore = Mockito.mock(ConversationStore.class);
 
         mockUserStore = Mockito.mock(UserStore.class);
-        profilePageServlet.setUserStore(mockUserStore);
+        profileListServlet.setUserStore(mockUserStore);
         Mockito.when(mockUserStore.getUser("Test User")).thenReturn(testUser);
+        Mockito.when(mockUserStore.getUsersList()).thenReturn(testList);
 
         String username = mockRequest.getParameter("username");
         Mockito.when(username).thenReturn("Test User");
@@ -55,5 +59,7 @@ public class ProfileServletTest {
         Mockito.when(mockRequest.getParameter("password")).thenReturn("Test Password");
         Mockito.when(mockRequest.getRequestURI()).thenReturn("/users/test Test User");
 
+        profileListServlet.doGet(mockRequest, mockResponse);
+        Mockito.verify(mockRequestDispatcher).forward(mockRequest, mockResponse);
     }
 }

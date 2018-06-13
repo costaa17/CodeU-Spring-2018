@@ -15,11 +15,10 @@
 --%>
 <%@ page import="java.util.List" %>
 <%@ page import="codeu.model.data.User" %>
-<%@ page import="codeu.model.store.basic.UserStore" %>
 
 
 <%
-  List<User> list = (List<User>) request.getAttribute("users");
+User user = (User) request.getAttribute("user");
 %>
 
 
@@ -37,24 +36,15 @@
     <a href="/conversations">Conversations</a>
     <% if(request.getSession().getAttribute("user") != null) { %>
       <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
-        <%if(request.getSession().getAttribute("user").equals("EmilyArroyo")||request.getSession().getAttribute("user").equals("AlexandriaStorm")||request.getSession().getAttribute("user").equals("AnaVitoriadoValleCosta")||request.getSession().getAttribute("user").equals("KevinWorkman")||request.getSession().getAttribute("user").equals("GavinLifrieri")) { %>
-
-        <a href="/admin">Administration</a>
-        <% } else{ %>
-          <a href="/login">Login</a>
-        <% } %>
     <% } else { %>
       <a href="/login">Login</a>
     <% } %>
     <a href="/about.jsp">About</a>
   </nav>
 
-    <h1>Profiles</h1>
+    <h1>Profile</h1>
 
-<%  for (int i = 0; i < list.size(); i++) {
-      String currUser = list.get(i).getName(); %>
-      <li>User name: <a href= \<%= "profile/" + currUser %> > <%= currUser %></a> </li>
-<% } %>
+    <p>Username: <%= user%></p>
 
     </body>
     </html>
