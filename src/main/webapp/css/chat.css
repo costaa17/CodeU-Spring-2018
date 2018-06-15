@@ -8,7 +8,10 @@ input {
   /* To center the input on the page */
   margin-left: auto;
   margin-right: auto;
-  width: 790px;
+  width: 70%;
+  height:40px;
+  padding-top: none;
+  padding-bottom:none;
 
 
   /* For the transition effect */
@@ -19,7 +22,27 @@ input {
   transition: 0.4s ease-in-out;
 }
 
-input:focus{
+#messageSubmitContainer {
+  position: relative;
+  width: 100%;
+}
+
+button {
+  position: absolute;
+  right: 0px;
+  width: 27%;
+  height: 100%;
+  padding-top: none;
+  padding-bottom: none;
+  /* For the transition effect */
+  border-color: white;
+  border-width: 5px;
+  border-style: solid;
+  -webkit-transition: 0.4s ease-in-out; /* Safari */
+  transition: 0.4s ease-in-out;
+}
+
+input:focus, input:hover, button:hover{
   border-color: #283593;
   border-width: 5px;
   border-style: solid;
