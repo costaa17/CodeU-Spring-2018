@@ -21,6 +21,7 @@
 <head>
   <title>Conversations</title>
   <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/form.css">
 </head>
 <body>
 
@@ -49,14 +50,15 @@
     <% } %>
 
     <% if(request.getSession().getAttribute("user") != null){ %>
-      <h1>New Conversation</h1>
-      <form action="/conversations" method="POST">
-          <div class="form-group">
-            <label class="form-control-label">Title:</label>
-          <input type="text" name="conversationTitle">
+      
+      <form action="/conversations" method="POST" id="form">
+        <h1>New Conversation</h1>
+        <div class="form-box convo-form">
+          <div class="fb-item">
+            <input type="text" name="conversationTitle">
+            <button type="submit" class="form-button">Create</button>
+          </div>
         </div>
-
-        <button type="submit">Create</button>
       </form>
 
       <hr/>

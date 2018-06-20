@@ -74,3 +74,10 @@
 .form-button:hover{
     opacity: 0.8;
 }
+
+.convo-form {
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 30px;
+    padding-bottom: 15px;
+}
