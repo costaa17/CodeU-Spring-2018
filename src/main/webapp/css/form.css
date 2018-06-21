@@ -1,0 +1,110 @@
+#form {
+	margin: auto;
+    width: 100%;
+	position: relative;
+}
+
+.form-box {
+	width: 60%;
+    margin: auto; 
+    box-shadow: 0px 0px 20px #CCC;
+    padding: 50px;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    margin-top: 50px;
+}
+
+.form-box span {
+    font-size: 15px;
+    font-weight: bold;
+    font-family: "Zilla Slab";
+    color: #2D4B68;
+}
+
+.form-box h2 {
+    margin-top: 0px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.fb-item {
+	margin-bottom: 20px;
+	font-family: "Open Sans";
+}
+
+.fb-item input {
+	width: 100%;
+    font-size: 30px;
+    color: #CCCCCC;
+    font-family: "Open Sans";
+    font-weight: lighter;
+    
+    outline: none;
+    border: 2px solid white;
+    border-bottom: 2px solid #2D4B68;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.3s;
+}
+
+.fb-item input:focus {
+    outline: none;
+    background-color: white;
+    color: black;
+}
+
+.fb-item input::placeholder {
+    opacity: 1;
+}
+
+.form-button {
+    background-color: #2D4B68; 
+    border: 2px solid #2D4B68;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 30px;
+    font-family: "Zilla Slab";
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+}
+
+.form-button:focus{
+    outline: none;
+}
+
+.form-button:hover{
+    opacity: 0.8;
+}
+
+.convo-form {
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 30px;
+    padding-bottom: 15px;
+}
+
+.convo-form input {
+    width: 48%;
+    border: 2px solid white;
+}
+
+.convo-form input:hover {
+    border-bottom: 2px solid #2D4B68;
+}
+
+.convoform input:focus {
+    border-bottom: 2px solid #2D4B68;
+}
+
+.convo-form button {
+    width: 48%;
+    padding: 5px;
+}
