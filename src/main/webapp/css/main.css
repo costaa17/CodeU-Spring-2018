@@ -66,6 +66,10 @@ button {
   outline: none;
 }
 
+#error {
+  text-align: center;
+}
+
 .red {
   color: red;
 }

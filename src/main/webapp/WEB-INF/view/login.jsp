@@ -40,14 +40,13 @@
    </nav>
 
   <div id="container">
-    <h1>Login</h1>
-
     <% if(request.getAttribute("error") != null){ %>
-        <h2 style="color:red"><%= request.getAttribute("error") %></h2>
+        <h2 style="color:red" id="error"><%= request.getAttribute("error") %></h2>
     <% } %>
-
+    
     <form action="/login" method="POST" id="form">
       <div class="form-box">
+        <h2>Login</h2>
         <div class="fb-item">
           <input type="text" name="username" id="username">
           <br/>

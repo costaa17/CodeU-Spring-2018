@@ -52,8 +52,8 @@
     <% if(request.getSession().getAttribute("user") != null){ %>
       
       <form action="/conversations" method="POST" id="form">
-        <h1>New Conversation</h1>
         <div class="form-box convo-form">
+          <h2>New Conversation</h2>
           <div class="fb-item">
             <input type="text" name="conversationTitle">
             <button type="submit" class="form-button">Create</button>

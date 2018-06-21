@@ -1,5 +1,5 @@
 #chat {
-  background-color: white;
+  background-color: #ccc;
   height: 500px;
   overflow-y: scroll
 }
@@ -15,7 +15,7 @@ input {
 
 
   /* For the transition effect */
-  border-color: white;
+  border-color: #ccc;
   border-width: 5px;
   border-style: solid;
   -webkit-transition: 0.4s ease-in-out; /* Safari */
@@ -35,7 +35,7 @@ button {
   padding-top: none;
   padding-bottom: none;
   /* For the transition effect */
-  border-color: white;
+  border-color: #ccc;
   border-width: 5px;
   border-style: solid;
   -webkit-transition: 0.4s ease-in-out; /* Safari */
