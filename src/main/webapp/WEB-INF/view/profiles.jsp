@@ -19,7 +19,7 @@
 
 
 <%
-User user = (User) request.getAttribute("user");
+  List<User> list = (List<User>) request.getAttribute("users");
 %>
 
 
@@ -52,10 +52,9 @@ User user = (User) request.getAttribute("user");
 
     <h1>Profiles</h1>
 
-<% List<User> list = UserStore.getInstance().getUsersList();
-    for (int i = 0; i < list.size(); i++) {
+<%  for (int i = 0; i < list.size(); i++) {
       String currUser = list.get(i).getName(); %>
-      <li>User name: <%= currUser %> </li>
+      <li> User name: <a href= \<%= "profile/" + currUser %> > <%= currUser %></a> </li>
 <% } %>
 
     </body>

@@ -68,7 +68,8 @@ public class PersistentDataStore {
         String userName = (String) entity.getProperty("username");
         String passwordHash = (String) entity.getProperty("password_hash");
         Instant creationTime = Instant.parse((String) entity.getProperty("creation_time"));
-        User user = new User(uuid, userName, passwordHash, creationTime);
+        String bio = (String) entity.getProperty("bio");
+        User user = new User(uuid, userName, passwordHash, creationTime, bio);
         users.add(user);
       } catch (Exception e) {
         // In a production environment, errors should be very rare. Errors which may
@@ -167,9 +168,8 @@ public class PersistentDataStore {
     for (Entity entity : results.asIterable()) {
       try {
         String event = (String) entity.getProperty("event");
-        System.out.println(entity.getProperty("time"));
         Instant time = Instant.parse((String) entity.getProperty("time"));
-        Activity activity = new Activity(event, Instant.now());
+        Activity activity = new Activity(event, time);
         activities.add(activity);
       } catch (Exception e) {
         // In a production environment, errors should be very rare. Errors which may
@@ -222,4 +222,3 @@ public class PersistentDataStore {
     datastore.put(activityEntity);
   }
 }
-

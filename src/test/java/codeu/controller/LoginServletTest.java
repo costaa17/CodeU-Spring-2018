@@ -76,7 +76,7 @@ public class LoginServletTest {
             UUID.randomUUID(),
             "test username",
             "$2a$10$.e.4EEfngEXmxAO085XnYOmDntkqod0C384jOR9oagwxMnPNHaGLa",
-            Instant.now());
+            Instant.now(), "random bio");
 
     Mockito.when(mockRequest.getParameter("username")).thenReturn("test username");
     Mockito.when(mockRequest.getParameter("password")).thenReturn("test password");

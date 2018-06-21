@@ -45,6 +45,7 @@
         <h2 style="color:red" id="error"><%= request.getAttribute("error") %></h2>
     <% } %>
 
+
     <form action="/register" method="POST" id="form">
       
       <div class="form-box">
@@ -71,6 +72,7 @@
 
         <button type="submit" class="form-button">Register</button>
       </div>
+
     </form>
 
   </div>

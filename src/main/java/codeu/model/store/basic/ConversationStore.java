@@ -89,7 +89,8 @@ public class ConversationStore {
     persistentStorageAgent.writeThrough(conversation);
     User user = userStore.getUser(conversation.getOwnerId());
     if (user != null) {
-      String event = user.getName() + " created the conversation: " + conversation.getTitle();
+      String event = user.getName() + " created the conversation: " + "<a href= \"/chat/"
+              + conversation.getTitle() + "\">" + conversation.getTitle() + "</a>";
       activityFeedStore.addActivity(new Activity(event, Instant.now()));
     }
   }

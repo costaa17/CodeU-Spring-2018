@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.time.Instant;
 import java.util.UUID;
 
-public class ProfileServletTest {
+public class ProfilePageServletTest {
 
     private ProfilePageServlet profilePageServlet;
     private UserStore mockUserStore;
@@ -31,17 +31,14 @@ public class ProfileServletTest {
         mockRequest = Mockito.mock(HttpServletRequest.class);
         mockResponse = Mockito.mock(HttpServletResponse.class);
         mockRequestDispatcher = Mockito.mock(RequestDispatcher.class);
-        Mockito.when(mockRequest.getRequestDispatcher("/WEB-INF/view/profiles.jsp"))
+        Mockito.when(mockRequest.getRequestDispatcher("/WEB-INF/view/profile.jsp"))
                 .thenReturn(mockRequestDispatcher);
         mockResponse = Mockito.mock(HttpServletResponse.class);
     }
 
     @Test
     public void testDoGet() throws IOException, ServletException {
-        profilePageServlet.doGet(mockRequest, mockResponse);
-        Mockito.verify(mockRequestDispatcher).forward(mockRequest, mockResponse);
-
-        User testUser = new User(UUID.randomUUID(), "Test User", "Test Password", Instant.now());
+        User testUser = new User(UUID.randomUUID(), "Test User", "Test Password", Instant.now(), "random bio 39298fkends");
 
         mockConversationStore = Mockito.mock(ConversationStore.class);
 
@@ -55,5 +52,7 @@ public class ProfileServletTest {
         Mockito.when(mockRequest.getParameter("password")).thenReturn("Test Password");
         Mockito.when(mockRequest.getRequestURI()).thenReturn("/users/test Test User");
 
+        profilePageServlet.doGet(mockRequest, mockResponse);
+        Mockito.verify(mockRequestDispatcher).forward(mockRequest, mockResponse);
     }
 }
