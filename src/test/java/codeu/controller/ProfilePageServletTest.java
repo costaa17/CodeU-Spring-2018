@@ -38,7 +38,7 @@ public class ProfilePageServletTest {
 
     @Test
     public void testDoGet() throws IOException, ServletException {
-        User testUser = new User(UUID.randomUUID(), "Test User", "Test Password", Instant.now(), "random bio 39298fkends");
+        User testUser = new User(UUID.randomUUID(), "Test User", "Test Password", Instant.now());
 
         mockConversationStore = Mockito.mock(ConversationStore.class);
 

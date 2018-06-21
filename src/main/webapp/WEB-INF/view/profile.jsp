@@ -42,9 +42,9 @@ User user = (User) request.getAttribute("user");
     <a href="/about.jsp">About</a>
   </nav>
 
-    <h1>   <%=user.getName()%></h1>
-    <p>     Date Joined: <%= user.getCreationTime()%></p>
-    <p>     Biography: <%= user.getBio()%></p>
+    <h1>Profile</h1>
+
+    <p>Username: <%= user%></p>
 
     </body>
     </html>
