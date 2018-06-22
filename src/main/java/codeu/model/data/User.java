@@ -14,7 +14,12 @@
 
 package codeu.model.data;
 
+import codeu.model.store.basic.UserStore;
+
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 /** Class representing a registered user. */
@@ -23,6 +28,26 @@ public class User {
   private final String name;
   private final String passwordHash;
   private final Instant creation;
+  private Set<String> friends;
+  private UserStore userStore;
+
+  /**
+   * Constructs a new User.
+   *
+   * @param id the ID of this User
+   * @param name the username of this User
+   * @param passwordHash the password hash of this User
+   * @param creation the creation time of this User
+   * @param friends a set with the usernames of the users friends
+   */
+  public User(UUID id, String name, String passwordHash, Instant creation, Set<String> friends) {
+    this.id = id;
+    this.name = name;
+    this.passwordHash = passwordHash;
+    this.creation = creation;
+    this.friends = friends;
+    userStore = UserStore.getInstance();
+  }
 
   /**
    * Constructs a new User.
@@ -33,10 +58,7 @@ public class User {
    * @param creation the creation time of this User
    */
   public User(UUID id, String name, String passwordHash, Instant creation) {
-    this.id = id;
-    this.name = name;
-    this.passwordHash = passwordHash;
-    this.creation = creation;
+    this(id, name, passwordHash, creation, new HashSet<>());
   }
 
   /** Returns the ID of this User. */
@@ -58,4 +80,39 @@ public class User {
   public Instant getCreationTime() {
     return creation;
   }
+
+  /** Returns a set with the usernames of this User's friends. */
+  public Set<String> getFriends() {
+    return friends;
+  }
+
+  /**
+   * Adds friend with given id if User with given id exists
+   *
+   * @param username the username of the friend to be added
+   */
+  public void addFriend(String username) {
+      if (userStore.getUser(id) != null) {
+        friends.add(username);
+      }
+  }
+
+  /**
+   * Removes friend with given id if exists
+   *
+   * @param username the username of the friend to be added
+   */
+  public void removeFriend(String username) {
+      friends.remove(username);
+  }
+
+  /**
+   * Returns true if user has a friend with the given id and false otherwise
+   *
+   * @param username the username of the friend to be added
+   */
+  public boolean isFriend(String username) {
+      return friends.contains(username);
+  }
+
 }

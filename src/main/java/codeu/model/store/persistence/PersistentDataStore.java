@@ -25,10 +25,12 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.appengine.repackaged.com.google.api.client.util.Lists;
+import com.google.appengine.repackaged.org.json.JSONArray;
+import jdk.nashorn.internal.parser.JSONParser;
+
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * This class handles all interactions with Google App Engine's Datastore service. On startup it
@@ -68,6 +70,14 @@ public class PersistentDataStore {
         String userName = (String) entity.getProperty("username");
         String passwordHash = (String) entity.getProperty("password_hash");
         Instant creationTime = Instant.parse((String) entity.getProperty("creation_time"));
+        if (entity.getProperty("friends") == null) {
+          entity.setProperty("friends", "{}");
+        }
+        JSONArray json = new JSONArray((String) entity.getProperty("friends"));
+        Set<String> friends = new HashSet<>();
+        for (int i = 0; i < json.length(); i++) {
+          friends.add(json.getString(i));
+        }
         User user = new User(uuid, userName, passwordHash, creationTime);
         users.add(user);
       } catch (Exception e) {
@@ -188,6 +198,8 @@ public class PersistentDataStore {
     userEntity.setProperty("username", user.getName());
     userEntity.setProperty("password_hash", user.getPasswordHash());
     userEntity.setProperty("creation_time", user.getCreationTime().toString());
+    String friendsJSON = (new JSONArray(Lists.newArrayList(user.getFriends()))).toString();
+    userEntity.setProperty("friends", friendsJSON);
     datastore.put(userEntity);
   }
 
