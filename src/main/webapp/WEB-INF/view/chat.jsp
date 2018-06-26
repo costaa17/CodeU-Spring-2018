@@ -27,13 +27,10 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
 <head>
   <title><%= conversation.getTitle() %></title>
   <link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/css/chat.css" type="text/css">
 
   <style>
-    #chat {
-      background-color: white;
-      height: 500px;
-      overflow-y: scroll
-    }
+
   </style>
 
   <script>
@@ -49,19 +46,19 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
   <nav>
     <a id="navTitle" href="/">CodeU Chat App</a>
     <a href="/conversations">Conversations</a>
-          <% if(request.getSession().getAttribute("user") != null){ %>
-      <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
-      <a href="/profiles">Profiles</a>
-        <%if(request.getSession().getAttribute("user").equals("EmilyArroyo")||request.getSession().getAttribute("user").equals("AlexandriaStorm")||request.getSession().getAttribute("user").equals("AnaVitoriadoValleCosta")||request.getSession().getAttribute("user").equals("KevinWorkman")||request.getSession().getAttribute("user").equals("GavinLifrieri")) { %>
+      <% if(request.getSession().getAttribute("user") != null){ %>
+        <a href="/profiles">Profiles</a>
 
-        <a href="/admin">Administration</a>
-        <% } else{ %>
-          <a href="/login">Login</a>
+        <% if(request.getSession().getAttribute("user").equals("EmilyArroyo")||request.getSession().getAttribute("user").equals("AlexandriaStorm")||request.getSession().getAttribute("user").equals("AnaVitoriadoValleCosta")||request.getSession().getAttribute("user").equals("KevinWorkman")||request.getSession().getAttribute("user").equals("GavinLifrieri")) { %>
+          <a href="/admin">Administration</a>
+        <% }else{ %>
+          <a href="/about.jsp">About</a>
+          <a> Hello <%= request.getSession().getAttribute("user") %>!</a>
         <% } %>
-    <% } else{ %>
-      <a href="/login">Login</a>
-    <% } %>
-    <a href="/about.jsp">About</a>
+      <% }else{ %>
+        <a href="/login">Login</a>
+        <a href="/about.jsp">About</a>
+      <% } %>
   </nav>
 
   <div id="container">
@@ -89,9 +86,10 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
 
     <% if (request.getSession().getAttribute("user") != null) { %>
     <form action="/chat/<%= conversation.getTitle() %>" method="POST">
+      <div id="messageSubmitContainer">
         <input type="text" name="message">
-        <br/>
         <button type="submit">Send</button>
+      </div>
     </form>
     <% } else { %>
       <p><a href="/login">Login</a> to send a message.</p>
@@ -102,4 +100,3 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
   </div>
 
 </body>
-</html>
