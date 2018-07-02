@@ -23,13 +23,17 @@
 
   <nav>
     <a id="navTitle" href="/">CodeU Chat App</a>
-    <a href="/conversations">Conversations</a>
     <% if(request.getSession().getAttribute("user") != null){ %>
       <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
-
+      <a href="/conversations">Conversations</a>
       <a href="/profiles">Profiles</a>
-      <%if(request.getSession().getAttribute("user").equals("EmilyArroyo")||request.getSession().getAttribute("user").equals("AlexandriaStorm")||request.getSession().getAttribute("user").equals("AnaVitoriadoValleCosta")||request.getSession().getAttribute("user").equals("KevinWorkman")||request.getSession().getAttribute("user").equals("GavinLifrieri")) { %>
-             <a href="/admin">Administration</a>
+      <a href="/activityfeed">Activity</a>
+      <%if (request.getSession().getAttribute("user").equals("EmilyArroyo")
+      || request.getSession().getAttribute("user").equals("AlexandriaStorm")
+      || request.getSession().getAttribute("user").equals("AnaVitoriadoValleCosta")
+      || request.getSession().getAttribute("user").equals("KevinWorkman")
+      || request.getSession().getAttribute("user").equals("GavinLifrieri")) { %>
+       <a href="/admin">Administration</a>
         <% } else{ %>
           <a href="/login">Login</a>
         <% } %>
@@ -48,13 +52,11 @@
 
       <ul>
         <li><a href="/login">Login</a> to get started.</li>
-        <li>Go to the <a href="/conversations">conversations</a> page to
-            create or join a conversation.</li>
             <% if(request.getSession().getAttribute("user") != null){ %>
-                         <li>View the <a href="/profiles">profiles</a> page to see user profiles.<li>
+               <li>View the <a href="/profiles">profiles</a> page to see user profiles.<li>
+               <li>Go to the <a href="/conversations">conversations</a> page to
+                   create or join a conversation.</li>
             <%  } %>
-
-
         <li>View the <a href="/about.jsp">about</a> page to learn more about the
             project.</li>
       </ul>

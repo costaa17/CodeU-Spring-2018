@@ -94,7 +94,8 @@ public class MessageStore {
     User user = userStore.getUser(message.getAuthorId());
     Conversation conversation = conversationStore.getConversation(message.getConversationId());
     if (user != null && conversation != null ) {
-      String event = user.getName() + " sent a message to the conversation: " + conversation.getTitle();
+      String event = user.getName() + " sent a message to the conversation: <a href= \"/chat/"
+              + conversation.getTitle() + "\">" + conversation.getTitle() + "</a>";
       activityFeedStore.addActivity(new Activity(event, Instant.now()));
     }
   }
