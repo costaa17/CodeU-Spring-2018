@@ -53,7 +53,7 @@
 
 <%  for (int i = 0; i < list.size(); i++) {
       String currUser = list.get(i).getName(); %>
-      <li>User name: <a href= \<%= "profile/" + currUser %> > <%= currUser %></a> </li>
+      <li> User name: <a href= \<%= "profile/" + currUser %> > <%= currUser %></a> </li>
 <% } %>
 
     </body>

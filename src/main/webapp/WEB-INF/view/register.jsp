@@ -54,6 +54,13 @@
       <br/>
       <input type="password" name="password" id="password">
       <br/><br/>
+      <label for="bio">Please enter your biography here: </label>
+      <br/>
+      <input type="bio" name="bio" id="bio">
+      <br/>
+
+
+
       <button type="submit">Submit</button>
     </form>
   </div>
