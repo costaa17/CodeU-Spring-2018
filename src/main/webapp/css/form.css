@@ -51,7 +51,6 @@
     background-color: white;
     color: black;
 }
-
 .fb-item input::placeholder {
     opacity: 1;
 }

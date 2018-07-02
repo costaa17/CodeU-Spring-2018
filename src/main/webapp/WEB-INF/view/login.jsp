@@ -24,8 +24,8 @@
 
   <nav>
     <a id="navTitle" href="/">CodeU Chat App</a>
-    <a href="/conversations">Conversations</a>
     <% if(request.getSession().getAttribute("user") != null){ %>
+      <a href="/conversations">Conversations</a>
       <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
 
         <%if(request.getSession().getAttribute("user").equals("EmilyArroyo")||request.getSession().getAttribute("user").equals("AlexandriaStorm")||request.getSession().getAttribute("user").equals("AnaVitoriadoValleCosta")||request.getSession().getAttribute("user").equals("KevinWorkman")||request.getSession().getAttribute("user").equals("GavinLifrieri")) { %>
@@ -43,7 +43,7 @@
     <% if(request.getAttribute("error") != null){ %>
         <h2 style="color:red" id="error"><%= request.getAttribute("error") %></h2>
     <% } %>
-    
+
     <form action="/login" method="POST" id="form">
       <div class="form-box">
         <h2>Login</h2>
@@ -58,7 +58,7 @@
           <br/>
           <span>Password</span>
         </div>
-        
+
         <button type="submit" class="form-button">Login</button>
       </div>
     </form>
