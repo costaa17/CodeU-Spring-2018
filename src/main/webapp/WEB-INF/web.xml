@@ -67,6 +67,16 @@
   </servlet-mapping>
 
   <servlet>
+    <servlet-name>AdminServlet</servlet-name>
+    <servlet-class>codeu.controller.AdminServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AdminServlet</servlet-name>
+    <url-pattern>/admin</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
     <servlet-name>ActivityFeedServlet</servlet-name>
     <servlet-class>codeu.controller.ActivityFeedServlet</servlet-class>
   </servlet>
@@ -77,13 +87,24 @@
   </servlet-mapping>
 
   <servlet>
+    <servlet-name>ProfileListServlet</servlet-name>
+    <servlet-class>codeu.controller.ProfileListServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ProfileListServlet</servlet-name>
+    <url-pattern>/profiles</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
     <servlet-name>ProfilePageServlet</servlet-name>
     <servlet-class>codeu.controller.ProfilePageServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>
     <servlet-name>ProfilePageServlet</servlet-name>
-    <url-pattern>/profiles</url-pattern>
+    <url-pattern>/profile/*</url-pattern>
   </servlet-mapping>
+
 
 </web-app>

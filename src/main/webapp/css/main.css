@@ -15,28 +15,35 @@
 
 body {
   margin: 0;
-  font-family: sans-serif;
+  font-family: "Zilla Slab";
+  font-weight: bold;
   line-height: 1.6;
-  font-size: 18px;
+  font-size: 1.1rem;
   line-height: 1.6;
   color: #444;
-  background-color: #eeeeee;
+  background-color: #F8F9F9;
 }
 
 nav {
-  background-color: #283593;
+  background-color: #1B4F72;
 }
 
 nav a {
   color: white;
   display: inline-block;
-  font-size: 24px;
+  font-size: 1rem;
   margin: 15px;
   text-decoration: none;
+  -webkit-transition-duration: 0.2s; /* Safari */
+  transition-duration: 0.2s;
+}
+
+nav a:hover {
+  opacity: 0.4;
 }
 
 #navTitle {
-  font-size: 36px;
+  font-size: 2rem;
 }
 
 #container {
@@ -51,8 +58,30 @@ h1 {
 
 input {
   font-size: 18px;
+  outline: none;
 }
 
 button {
   font-size: 18px;
+  outline: none;
+}
+
+#error {
+  text-align: center;
+}
+
+.red {
+  color: red;
+}
+
+.blue {
+  color: blue;
+}
+
+.yellow {
+  color: yellow;
+}
+
+.green {
+  color: green;
 }

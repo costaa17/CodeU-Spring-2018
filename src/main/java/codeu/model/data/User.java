@@ -22,8 +22,11 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-/** Class representing a registered user. */
+/**
+ * Class representing a registered user.
+ */
 public class User {
+
   private final UUID id;
   private final String name;
   private final String passwordHash;
@@ -116,3 +119,4 @@ public class User {
   }
 
 }
+

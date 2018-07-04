@@ -1,4 +1,4 @@
-c<%--
+<%--
   Copyright 2017 Google Inc.
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,18 +21,27 @@ c<%--
 <head>
   <title>Conversations</title>
   <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/form.css">
 </head>
 <body>
 
   <nav>
     <a id="navTitle" href="/">CodeU Chat App</a>
-    <a href="/conversations">Conversations</a>
-    <% if(request.getSession().getAttribute("user") != null){ %>
-      <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
-    <% } else{ %>
-      <a href="/login">Login</a>
-    <% } %>
-    <a href="/about.jsp">About</a>
+      <% if(request.getSession().getAttribute("user") != null){ %>
+        <a href="/conversations">Conversations</a>
+        <a href="/profiles">Profiles</a>
+
+        <% if(request.getSession().getAttribute("user").equals("EmilyArroyo")||request.getSession().getAttribute("user").equals("AlexandriaStorm")||request.getSession().getAttribute("user").equals("AnaVitoriadoValleCosta")||request.getSession().getAttribute("user").equals("KevinWorkman")||request.getSession().getAttribute("user").equals("GavinLifrieri")) { %>
+          <a href="/admin">Administration</a>
+        <% }else{ %>
+          <a href="/about.jsp">About</a>
+          <a> Hello <%= request.getSession().getAttribute("user") %>!</a>
+          <a href="/activityfeed">Activity</a>
+        <% } %>
+      <% }else{ %>
+        <a href="/login">Login</a>
+        <a href="/about.jsp">About</a>
+      <% } %>
   </nav>
 
   <div id="container">
@@ -42,14 +51,15 @@ c<%--
     <% } %>
 
     <% if(request.getSession().getAttribute("user") != null){ %>
-      <h1>New Conversation</h1>
-      <form action="/conversations" method="POST">
-          <div class="form-group">
-            <label class="form-control-label">Title:</label>
-          <input type="text" name="conversationTitle">
-        </div>
 
-        <button type="submit">Create</button>
+      <form action="/conversations" method="POST" id="form">
+        <div class="form-box convo-form">
+          <h2>New Conversation</h2>
+          <div class="fb-item">
+            <input type="text" name="conversationTitle">
+            <button type="submit" class="form-button">Create</button>
+          </div>
+        </div>
       </form>
 
       <hr/>

@@ -18,27 +18,34 @@
 <head>
   <title>Register</title>
   <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/form.css">
 </head>
 <body>
 
   <nav>
     <a id="navTitle" href="/">CodeU Chat App</a>
     <a href="/conversations">Conversations</a>
-    <% if(request.getSession().getAttribute("user") != null) { %>
+        <% if(request.getSession().getAttribute("user") != null) { %>
       <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
-    <% } else { %>
+        <%if(request.getSession().getAttribute("user").equals("EmilyArroyo")||request.getSession().getAttribute("user").equals("AlexandriaStorm")||request.getSession().getAttribute("user").equals("AnaVitoriadoValleCosta")||request.getSession().getAttribute("user").equals("KevinWorkman")||request.getSession().getAttribute("user").equals("GavinLifrieri")) { %>
+
+        <a href="/admin">Administration</a>
+        <% } else{ %>
+          <a href="/login">Login</a>
+        <% } %>
+    <% } else{ %>
       <a href="/login">Login</a>
     <% } %>
     <a href="/about.jsp">About</a>
-  </nav>
+ </nav>
 
   <div id="container">
-    <h1>Register</h1>
 
     <% if(request.getAttribute("error") != null){ %>
-        <h2 style="color:red"><%= request.getAttribute("error") %></h2>
+        <h2 style="color:red" id="error"><%= request.getAttribute("error") %></h2>
     <% } %>
 
+<<<<<<< HEAD
     <form action="/register" method="POST">
       <label for="username">Username: </label>
       <br/>
@@ -49,7 +56,39 @@
       <input type="password" name="password" id="password">
       <br/><br/>
       <button type="submit">Submit</button>
+=======
+
+    <form action="/register" method="POST" id="form">
+      
+      <div class="form-box">
+        <h2>Register</h2>
+
+        <div class="fb-item">
+          <input type="text" name="username" id="username" placeholder="Username">
+          <br/>
+          <span>Username</span>
+        </div>
+
+        <div class="fb-item">
+          <input type="password" name="password" id="password" placeholder="Password">
+          <br/>
+          <span>Password</span>
+        </div>
+
+        <div class="fb-item">
+          <input type="text" name="language" id="language" placeholder="Language">
+          <br/>
+          <span>Most Comfortable Language</span>
+        </div>
+
+
+        <button type="submit" class="form-button">Register</button>
+      </div>
+
+>>>>>>> a666436e9b2deac5364639d038c790408321f50d
     </form>
+
   </div>
+
 </body>
 </html>
