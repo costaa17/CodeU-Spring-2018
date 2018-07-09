@@ -145,8 +145,12 @@ public class ChatServletTest {
             UUID.randomUUID(),
             "test_username",
             "$2a$10$bBiLUAVmUFK6Iwg5rmpBUOIBW6rIMhU1eKfi3KR60V9UXaYTwPfHy",
+<<<<<<< HEAD
+             Instant.now(), "random bio", "English");
+=======
             Instant.now(), "random bio", "English");
 
+>>>>>>> 84f29da5c7b067ab2800c569d188ffdcce932d1e
     Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
 
     Mockito.when(mockConversationStore.getConversationWithTitle("test_conversation"))
@@ -168,8 +172,12 @@ public class ChatServletTest {
             UUID.randomUUID(),
             "test_username",
             "$2a$10$bBiLUAVmUFK6Iwg5rmpBUOIBW6rIMhU1eKfi3KR60V9UXaYTwPfHy",
+<<<<<<< HEAD
+             Instant.now(), "random bio", "English");
+=======
             Instant.now(), "random bio", "English");
 
+>>>>>>> 84f29da5c7b067ab2800c569d188ffdcce932d1e
     Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
 
     Conversation fakeConversation =
@@ -198,8 +206,12 @@ public class ChatServletTest {
             UUID.randomUUID(),
             "test_username",
             "$2a$10$eDhncK/4cNH2KE.Y51AWpeL8/5znNBQLuAFlyJpSYNODR/SJQ/Fg6",
+<<<<<<< HEAD
+             Instant.now(), "random bio", "English");
+=======
             Instant.now(), "random bio", "English");
 
+>>>>>>> 84f29da5c7b067ab2800c569d188ffdcce932d1e
     Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
 
     Conversation fakeConversation =
@@ -214,7 +226,7 @@ public class ChatServletTest {
 
     ArgumentCaptor<Message> messageArgumentCaptor = ArgumentCaptor.forClass(Message.class);
     Mockito.verify(mockMessageStore).addMessage(messageArgumentCaptor.capture());
-    
+
     Assert.assertEquals(
         "Contains <b>html</b> and  content.", messageArgumentCaptor.getValue().getContent());
 
@@ -231,8 +243,12 @@ public class ChatServletTest {
             UUID.randomUUID(),
             "test_username",
             "$2a$10$eDhncK/4cNH2KE.Y51AWpeL8/5znNBQLuAFlyJpSYNODR/SJQ/Fg6",
+<<<<<<< HEAD
+             Instant.now(), "random bio", "English");
+=======
             Instant.now(), "random bio", "English");
 
+>>>>>>> 84f29da5c7b067ab2800c569d188ffdcce932d1e
     Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
 
     Conversation fakeConversation =
@@ -248,7 +264,7 @@ public class ChatServletTest {
 
     ArgumentCaptor<Message> messageArgumentCaptor = ArgumentCaptor.forClass(Message.class);
     Mockito.verify(mockMessageStore).addMessage(messageArgumentCaptor.capture());
-    
+
     Assert.assertEquals(
         "This contains a url:<a href=' www.google.com'> www.google.com</a>", messageArgumentCaptor.getValue().getContent());
 
@@ -266,8 +282,12 @@ public class ChatServletTest {
             UUID.randomUUID(),
             "test_username",
             "$2a$10$eDhncK/4cNH2KE.Y51AWpeL8/5znNBQLuAFlyJpSYNODR/SJQ/Fg6",
+<<<<<<< HEAD
+             Instant.now(), "random bio", "English");
+=======
             Instant.now(), "random bio", "English");
 
+>>>>>>> 84f29da5c7b067ab2800c569d188ffdcce932d1e
     Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
 
     Conversation fakeConversation =
@@ -283,7 +303,7 @@ public class ChatServletTest {
 
     ArgumentCaptor<Message> messageArgumentCaptor = ArgumentCaptor.forClass(Message.class);
     Mockito.verify(mockMessageStore).addMessage(messageArgumentCaptor.capture());
-    
+
     Assert.assertEquals(
         "Contains <b>html</b> and  content. This should be <em>included</em>", messageArgumentCaptor.getValue().getContent());
 
@@ -302,8 +322,12 @@ public class ChatServletTest {
             UUID.randomUUID(),
             "test_username",
             "$2a$10$eDhncK/4cNH2KE.Y51AWpeL8/5znNBQLuAFlyJpSYNODR/SJQ/Fg6",
+<<<<<<< HEAD
+             Instant.now(), "random bio", "English");
+=======
             Instant.now(), "random bio", "English");
 
+>>>>>>> 84f29da5c7b067ab2800c569d188ffdcce932d1e
     Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
 
     Conversation fakeConversation =
@@ -318,7 +342,7 @@ public class ChatServletTest {
 
     ArgumentCaptor<Message> messageArgumentCaptor = ArgumentCaptor.forClass(Message.class);
     Mockito.verify(mockMessageStore).addMessage(messageArgumentCaptor.capture());
-    
+
     Assert.assertEquals(
         "This contains two urls:<a href=' www.google.com'> www.google.com</a> and<a href=' www.youtube.com'> www.youtube.com</a>", messageArgumentCaptor.getValue().getContent());
 
@@ -335,8 +359,12 @@ public class ChatServletTest {
             UUID.randomUUID(),
             "test_username",
             "$2a$10$eDhncK/4cNH2KE.Y51AWpeL8/5znNBQLuAFlyJpSYNODR/SJQ/Fg6",
+<<<<<<< HEAD
+             Instant.now(), "random bio", "English");
+=======
 
             Instant.now(), "random bio", "English");
+>>>>>>> 84f29da5c7b067ab2800c569d188ffdcce932d1e
     Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
 
     Conversation fakeConversation =
@@ -351,7 +379,7 @@ public class ChatServletTest {
 
     ArgumentCaptor<Message> messageArgumentCaptor = ArgumentCaptor.forClass(Message.class);
     Mockito.verify(mockMessageStore).addMessage(messageArgumentCaptor.capture());
-    
+
     Assert.assertEquals(
         "This message contains  content. We should remove nontext stuff like this", messageArgumentCaptor.getValue().getContent());
 
@@ -368,8 +396,12 @@ public class ChatServletTest {
             UUID.randomUUID(),
             "test_username",
             "$2a$10$eDhncK/4cNH2KE.Y51AWpeL8/5znNBQLuAFlyJpSYNODR/SJQ/Fg6",
+<<<<<<< HEAD
+             Instant.now(), "random bio", "English");
+=======
             Instant.now(), "random bio", "English");
 
+>>>>>>> 84f29da5c7b067ab2800c569d188ffdcce932d1e
     Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
 
     Conversation fakeConversation =
@@ -384,7 +416,7 @@ public class ChatServletTest {
 
     ArgumentCaptor<Message> messageArgumentCaptor = ArgumentCaptor.forClass(Message.class);
     Mockito.verify(mockMessageStore).addMessage(messageArgumentCaptor.capture());
-    
+
     Assert.assertEquals(
         "This message contains the colored word <div class=\"red\">red</div>", messageArgumentCaptor.getValue().getContent());
 
@@ -401,8 +433,12 @@ public class ChatServletTest {
             UUID.randomUUID(),
             "test_username",
             "$2a$10$eDhncK/4cNH2KE.Y51AWpeL8/5znNBQLuAFlyJpSYNODR/SJQ/Fg6",
+<<<<<<< HEAD
+             Instant.now(), "random bio", "English");
+=======
             Instant.now(), "random bio", "English");
 
+>>>>>>> 84f29da5c7b067ab2800c569d188ffdcce932d1e
     Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
 
     Conversation fakeConversation =
@@ -417,7 +453,7 @@ public class ChatServletTest {
 
     ArgumentCaptor<Message> messageArgumentCaptor = ArgumentCaptor.forClass(Message.class);
     Mockito.verify(mockMessageStore).addMessage(messageArgumentCaptor.capture());
-    
+
     Assert.assertEquals(
         "This message contains the colored word <div class=\"red\">red</div>", messageArgumentCaptor.getValue().getContent());
 

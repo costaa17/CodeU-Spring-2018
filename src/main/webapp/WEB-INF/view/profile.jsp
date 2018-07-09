@@ -33,19 +33,29 @@ User user = (User) request.getAttribute("user");
 
   <nav>
     <a id="navTitle" href="/">CodeU Chat App</a>
-    <a href="/conversations">Conversations</a>
-    <% if(request.getSession().getAttribute("user") != null) { %>
+    <% if(request.getSession().getAttribute("user") != null){ %>
       <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
+      <a href="/conversations">Conversations</a>
+      <a href="/profiles">Profiles</a>
       <a href="/activityfeed">Activity</a>
-    <% } else { %>
+      <%if (request.getSession().getAttribute("user").equals("EmilyArroyo")
+      || request.getSession().getAttribute("user").equals("AlexandriaStorm")
+      || request.getSession().getAttribute("user").equals("AnaVitoriadoValleCosta")
+      || request.getSession().getAttribute("user").equals("KevinWorkman")
+      || request.getSession().getAttribute("user").equals("GavinLifrieri")) { %>
+       <a href="/admin">Administration</a>
+        <% } else{ %>
+          <a href="/login">Login</a>
+        <% } %>
+           <% } else{ %>
       <a href="/login">Login</a>
     <% } %>
     <a href="/about.jsp">About</a>
   </nav>
 
-    <h1>Profile</h1>
-
-    <p>Username: <%= user%></p>
+    <h1>   <%=user.getName()%></h1>
+    <p>     Date Joined: <%= user.getCreationTime()%></p>
+    <p>     Biography: <%= user.getBio()%></p>
 
     </body>
     </html>

@@ -36,12 +36,11 @@ public class User {
      * @param name         the username of this User
      * @param passwordHash the password hash of this User
      * @param creation     the creation time of this User
-
      * @param bio          the biography of this User
      * @param language     the language of this User
-     */
-    public User(UUID id, String name, String passwordHash, Instant creation, String bio, String language) {
+   */
 
+     public User(UUID id, String name, String passwordHash, Instant creation, String bio, String language) {
         this.id = id;
         this.name = name;
         this.passwordHash = passwordHash;
@@ -90,4 +89,3 @@ public class User {
 
 
 }
-

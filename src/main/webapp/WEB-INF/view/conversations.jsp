@@ -27,21 +27,24 @@
 
   <nav>
     <a id="navTitle" href="/">CodeU Chat App</a>
-      <% if(request.getSession().getAttribute("user") != null){ %>
-        <a href="/conversations">Conversations</a>
-        <a href="/profiles">Profiles</a>
-
-        <% if(request.getSession().getAttribute("user").equals("EmilyArroyo")||request.getSession().getAttribute("user").equals("AlexandriaStorm")||request.getSession().getAttribute("user").equals("AnaVitoriadoValleCosta")||request.getSession().getAttribute("user").equals("KevinWorkman")||request.getSession().getAttribute("user").equals("GavinLifrieri")) { %>
-          <a href="/admin">Administration</a>
-        <% }else{ %>
-          <a href="/about.jsp">About</a>
-          <a> Hello <%= request.getSession().getAttribute("user") %>!</a>
-          <a href="/activityfeed">Activity</a>
+    <% if(request.getSession().getAttribute("user") != null){ %>
+      <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
+      <a href="/conversations">Conversations</a>
+      <a href="/profiles">Profiles</a>
+      <a href="/activityfeed">Activity</a>
+      <%if (request.getSession().getAttribute("user").equals("EmilyArroyo")
+      || request.getSession().getAttribute("user").equals("AlexandriaStorm")
+      || request.getSession().getAttribute("user").equals("AnaVitoriadoValleCosta")
+      || request.getSession().getAttribute("user").equals("KevinWorkman")
+      || request.getSession().getAttribute("user").equals("GavinLifrieri")) { %>
+       <a href="/admin">Administration</a>
+        <% } else{ %>
+          <a href="/login">Login</a>
         <% } %>
-      <% }else{ %>
-        <a href="/login">Login</a>
-        <a href="/about.jsp">About</a>
-      <% } %>
+           <% } else{ %>
+      <a href="/login">Login</a>
+    <% } %>
+    <a href="/about.jsp">About</a>
   </nav>
 
   <div id="container">
@@ -81,8 +84,8 @@
     <%
       for(Conversation conversation : conversations){
     %>
-      <li><a href="/chat/<%= conversation.getTitle() %>">
-        <%= conversation.getTitle() %></a></li>
+      <a href="/chat/<%= conversation.getTitle() %>">
+        <%= conversation.getTitle() %></a>
     <%
       }
     %>
