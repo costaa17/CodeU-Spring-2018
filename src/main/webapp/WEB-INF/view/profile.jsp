@@ -36,15 +36,16 @@ User user = (User) request.getAttribute("user");
     <a href="/conversations">Conversations</a>
     <% if(request.getSession().getAttribute("user") != null) { %>
       <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
+      <a href="/activityfeed">Activity</a>
     <% } else { %>
       <a href="/login">Login</a>
     <% } %>
     <a href="/about.jsp">About</a>
   </nav>
 
-    <h1>   <%=user.getName()%></h1>
-    <p>     Date Joined: <%= user.getCreationTime()%></p>
-    <p>     Biography: <%= user.getBio()%></p>
+    <h1>Profile</h1>
+
+    <p>Username: <%= user%></p>
 
     </body>
     </html>

@@ -71,6 +71,7 @@ public class PersistentDataStore {
         String bio = (String) entity.getProperty("bio");
         String language = (String) entity.getProperty("language");
         User user = new User(uuid, userName, passwordHash, creationTime, bio, language);
+
         users.add(user);
       } catch (Exception e) {
         // In a production environment, errors should be very rare. Errors which may
@@ -224,3 +225,4 @@ public class PersistentDataStore {
     datastore.put(activityEntity);
   }
 }
+

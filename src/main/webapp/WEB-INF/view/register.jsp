@@ -45,6 +45,18 @@
         <h2 style="color:red" id="error"><%= request.getAttribute("error") %></h2>
     <% } %>
 
+<<<<<<< HEAD
+    <form action="/register" method="POST">
+      <label for="username">Username: </label>
+      <br/>
+      <input type="text" name="username" id="username">
+      <br/>
+      <label for="password">Password: </label>
+      <br/>
+      <input type="password" name="password" id="password">
+      <br/><br/>
+      <button type="submit">Submit</button>
+=======
 
     <form action="/register" method="POST" id="form">
       
@@ -73,6 +85,7 @@
         <button type="submit" class="form-button">Register</button>
       </div>
 
+>>>>>>> a666436e9b2deac5364639d038c790408321f50d
     </form>
 
   </div>

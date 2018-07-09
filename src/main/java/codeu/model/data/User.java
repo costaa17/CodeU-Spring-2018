@@ -28,6 +28,7 @@ public class User {
     private final String bio;
     private final String language;
 
+
     /**
      * Constructs a new User.
      *
@@ -35,16 +36,19 @@ public class User {
      * @param name         the username of this User
      * @param passwordHash the password hash of this User
      * @param creation     the creation time of this User
+
      * @param bio          the biography of this User
      * @param language     the language of this User
      */
     public User(UUID id, String name, String passwordHash, Instant creation, String bio, String language) {
+
         this.id = id;
         this.name = name;
         this.passwordHash = passwordHash;
         this.creation = creation;
         this.bio = bio;
         this.language = language;
+
     }
 
     /**
@@ -84,4 +88,6 @@ public class User {
     }
 
 
+
 }
+

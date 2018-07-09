@@ -43,6 +43,7 @@ public class ProfileListServletTest {
 
 
         User testUser = new User(UUID.randomUUID(), "Test User", "Test Password", Instant.now(), "This is my bio", "English");
+
         List <User> testList = new ArrayList();
         testList.add(testUser);
 
