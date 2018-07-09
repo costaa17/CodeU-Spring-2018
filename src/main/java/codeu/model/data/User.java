@@ -47,6 +47,7 @@ public class User {
         this.creation = creation;
         this.bio = bio;
         this.language = language;
+
     }
 
     /**
@@ -77,18 +78,14 @@ public class User {
         return creation;
     }
 
-    /**
-     * Returns the Bio of this User.
-     */
     public String getBio() {
         return bio;
     }
-    /**
-     * Returns the selected language of this User.
-     */
+
     public String getLanguage() {
-           return language;
-       }
+        return language;
+    }
+
 
 
 }
