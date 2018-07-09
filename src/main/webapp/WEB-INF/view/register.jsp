@@ -24,42 +24,34 @@
 
   <nav>
     <a id="navTitle" href="/">CodeU Chat App</a>
-    <a href="/conversations">Conversations</a>
-        <% if(request.getSession().getAttribute("user") != null) { %>
+    <% if(request.getSession().getAttribute("user") != null){ %>
       <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
-        <%if(request.getSession().getAttribute("user").equals("EmilyArroyo")||request.getSession().getAttribute("user").equals("AlexandriaStorm")||request.getSession().getAttribute("user").equals("AnaVitoriadoValleCosta")||request.getSession().getAttribute("user").equals("KevinWorkman")||request.getSession().getAttribute("user").equals("GavinLifrieri")) { %>
-
-        <a href="/admin">Administration</a>
+      <a href="/conversations">Conversations</a>
+      <a href="/profiles">Profiles</a>
+      <a href="/activityfeed">Activity</a>
+      <%if (request.getSession().getAttribute("user").equals("EmilyArroyo")
+      || request.getSession().getAttribute("user").equals("AlexandriaStorm")
+      || request.getSession().getAttribute("user").equals("AnaVitoriadoValleCosta")
+      || request.getSession().getAttribute("user").equals("KevinWorkman")
+      || request.getSession().getAttribute("user").equals("GavinLifrieri")) { %>
+       <a href="/admin">Administration</a>
         <% } else{ %>
           <a href="/login">Login</a>
         <% } %>
-    <% } else{ %>
+           <% } else{ %>
       <a href="/login">Login</a>
     <% } %>
     <a href="/about.jsp">About</a>
- </nav>
-
+  </nav>
   <div id="container">
 
     <% if(request.getAttribute("error") != null){ %>
         <h2 style="color:red" id="error"><%= request.getAttribute("error") %></h2>
     <% } %>
 
-<<<<<<< HEAD
-    <form action="/register" method="POST">
-      <label for="username">Username: </label>
-      <br/>
-      <input type="text" name="username" id="username">
-      <br/>
-      <label for="password">Password: </label>
-      <br/>
-      <input type="password" name="password" id="password">
-      <br/><br/>
-      <button type="submit">Submit</button>
-=======
 
     <form action="/register" method="POST" id="form">
-      
+
       <div class="form-box">
         <h2>Register</h2>
 
@@ -76,16 +68,20 @@
         </div>
 
         <div class="fb-item">
+          <input type="bio" name="bio" id="bio" placeholder="Biography">
+          <br/>
+          <span>Please enter your biography here:</span>
+        </div>
+
+        <div class="fb-item">
           <input type="text" name="language" id="language" placeholder="Language">
           <br/>
           <span>Most Comfortable Language</span>
         </div>
 
-
         <button type="submit" class="form-button">Register</button>
       </div>
 
->>>>>>> a666436e9b2deac5364639d038c790408321f50d
     </form>
 
   </div>
