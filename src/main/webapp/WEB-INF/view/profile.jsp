@@ -56,6 +56,7 @@ User user = (User) request.getAttribute("user");
     <h1>   <%=user.getName()%></h1>
     <p>     Date Joined: <%= user.getCreationTime()%></p>
     <p>     Biography: <%= user.getBio()%></p>
+    <p>     Language: <%= user.getLanguage()%></p>
 
     </body>
     </html>

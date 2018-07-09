@@ -145,12 +145,8 @@ public class ChatServletTest {
             UUID.randomUUID(),
             "test_username",
             "$2a$10$bBiLUAVmUFK6Iwg5rmpBUOIBW6rIMhU1eKfi3KR60V9UXaYTwPfHy",
-<<<<<<< HEAD
              Instant.now(), "random bio", "English");
-=======
-            Instant.now(), "random bio", "English");
 
->>>>>>> 84f29da5c7b067ab2800c569d188ffdcce932d1e
     Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
 
     Mockito.when(mockConversationStore.getConversationWithTitle("test_conversation"))
@@ -172,12 +168,8 @@ public class ChatServletTest {
             UUID.randomUUID(),
             "test_username",
             "$2a$10$bBiLUAVmUFK6Iwg5rmpBUOIBW6rIMhU1eKfi3KR60V9UXaYTwPfHy",
-<<<<<<< HEAD
-             Instant.now(), "random bio", "English");
-=======
             Instant.now(), "random bio", "English");
 
->>>>>>> 84f29da5c7b067ab2800c569d188ffdcce932d1e
     Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
 
     Conversation fakeConversation =
@@ -206,12 +198,7 @@ public class ChatServletTest {
             UUID.randomUUID(),
             "test_username",
             "$2a$10$eDhncK/4cNH2KE.Y51AWpeL8/5znNBQLuAFlyJpSYNODR/SJQ/Fg6",
-<<<<<<< HEAD
              Instant.now(), "random bio", "English");
-=======
-            Instant.now(), "random bio", "English");
-
->>>>>>> 84f29da5c7b067ab2800c569d188ffdcce932d1e
     Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
 
     Conversation fakeConversation =
@@ -243,12 +230,8 @@ public class ChatServletTest {
             UUID.randomUUID(),
             "test_username",
             "$2a$10$eDhncK/4cNH2KE.Y51AWpeL8/5znNBQLuAFlyJpSYNODR/SJQ/Fg6",
-<<<<<<< HEAD
              Instant.now(), "random bio", "English");
-=======
-            Instant.now(), "random bio", "English");
 
->>>>>>> 84f29da5c7b067ab2800c569d188ffdcce932d1e
     Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
 
     Conversation fakeConversation =
@@ -282,12 +265,7 @@ public class ChatServletTest {
             UUID.randomUUID(),
             "test_username",
             "$2a$10$eDhncK/4cNH2KE.Y51AWpeL8/5znNBQLuAFlyJpSYNODR/SJQ/Fg6",
-<<<<<<< HEAD
              Instant.now(), "random bio", "English");
-=======
-            Instant.now(), "random bio", "English");
-
->>>>>>> 84f29da5c7b067ab2800c569d188ffdcce932d1e
     Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
 
     Conversation fakeConversation =
@@ -322,12 +300,8 @@ public class ChatServletTest {
             UUID.randomUUID(),
             "test_username",
             "$2a$10$eDhncK/4cNH2KE.Y51AWpeL8/5znNBQLuAFlyJpSYNODR/SJQ/Fg6",
-<<<<<<< HEAD
              Instant.now(), "random bio", "English");
-=======
-            Instant.now(), "random bio", "English");
 
->>>>>>> 84f29da5c7b067ab2800c569d188ffdcce932d1e
     Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
 
     Conversation fakeConversation =
@@ -359,12 +333,8 @@ public class ChatServletTest {
             UUID.randomUUID(),
             "test_username",
             "$2a$10$eDhncK/4cNH2KE.Y51AWpeL8/5znNBQLuAFlyJpSYNODR/SJQ/Fg6",
-<<<<<<< HEAD
-             Instant.now(), "random bio", "English");
-=======
-
             Instant.now(), "random bio", "English");
->>>>>>> 84f29da5c7b067ab2800c569d188ffdcce932d1e
+
     Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
 
     Conversation fakeConversation =
@@ -396,12 +366,8 @@ public class ChatServletTest {
             UUID.randomUUID(),
             "test_username",
             "$2a$10$eDhncK/4cNH2KE.Y51AWpeL8/5znNBQLuAFlyJpSYNODR/SJQ/Fg6",
-<<<<<<< HEAD
-             Instant.now(), "random bio", "English");
-=======
             Instant.now(), "random bio", "English");
 
->>>>>>> 84f29da5c7b067ab2800c569d188ffdcce932d1e
     Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
 
     Conversation fakeConversation =
@@ -433,12 +399,8 @@ public class ChatServletTest {
             UUID.randomUUID(),
             "test_username",
             "$2a$10$eDhncK/4cNH2KE.Y51AWpeL8/5znNBQLuAFlyJpSYNODR/SJQ/Fg6",
-<<<<<<< HEAD
              Instant.now(), "random bio", "English");
-=======
-            Instant.now(), "random bio", "English");
 
->>>>>>> 84f29da5c7b067ab2800c569d188ffdcce932d1e
     Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
 
     Conversation fakeConversation =

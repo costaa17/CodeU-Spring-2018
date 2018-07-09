@@ -71,10 +71,7 @@ public class PersistentDataStore {
         String bio = (String) entity.getProperty("bio");
         String language = (String) entity.getProperty("language");
         User user = new User(uuid, userName, passwordHash, creationTime, bio, language);
-<<<<<<< HEAD
-=======
 
->>>>>>> 84f29da5c7b067ab2800c569d188ffdcce932d1e
         users.add(user);
       } catch (Exception e) {
         // In a production environment, errors should be very rare. Errors which may
