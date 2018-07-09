@@ -50,23 +50,6 @@
     <% } %>
 
 
-  <%--  <form action="/register" method="POST">
-      <label for="username">Username: </label>
-      <br/>
-      <input type="text" name="username" id="username">
-      <br/>
-      <label for="password">Password: </label>
-      <br/>
-      <input type="password" name="password" id="password">
-      <br/><br/>
-      <label for="bio">Please enter your biography here: </label>
-      <br/>
-      <input type="bio" name="bio" id="bio">
-      <br/>
-
-      <button type="submit">Submit</button>
-======= --%>
-
     <form action="/register" method="POST" id="form">
 
       <div class="form-box">

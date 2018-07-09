@@ -103,10 +103,11 @@ public class UserStoreTest {
   public void testIsUserRegistered_false() {
     Assert.assertFalse(userStore.isUserRegistered("fake username"));
   }
-
+  
   private void assertEquals(User expectedUser, User actualUser) {
     Assert.assertEquals(expectedUser.getId(), actualUser.getId());
     Assert.assertEquals(expectedUser.getName(), actualUser.getName());
     Assert.assertEquals(expectedUser.getCreationTime(), actualUser.getCreationTime());
+    Assert.assertEquals(expectedUser.getBio(), actualUser.getBio());
   }
 }
