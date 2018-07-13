@@ -19,6 +19,7 @@
   <title>Register</title>
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/form.css">
+  <script src ="/scripts/register.js"></script>
 </head>
 <body>
 
@@ -45,19 +46,6 @@
         <h2 style="color:red" id="error"><%= request.getAttribute("error") %></h2>
     <% } %>
 
-<<<<<<< HEAD
-    <form action="/register" method="POST">
-      <label for="username">Username: </label>
-      <br/>
-      <input type="text" name="username" id="username">
-      <br/>
-      <label for="password">Password: </label>
-      <br/>
-      <input type="password" name="password" id="password">
-      <br/><br/>
-      <button type="submit">Submit</button>
-=======
-
     <form action="/register" method="POST" id="form">
       
       <div class="form-box">
@@ -76,7 +64,12 @@
         </div>
 
         <div class="fb-item">
-          <input type="text" name="language" id="language" placeholder="Language">
+            <select id="mySelect">
+              <option>Apple</option>
+              <option>Pear</option>
+              <option>Banana</option>
+              <option>Orange</option>
+            </select>
           <br/>
           <span>Most Comfortable Language</span>
         </div>
@@ -85,7 +78,6 @@
         <button type="submit" class="form-button">Register</button>
       </div>
 
->>>>>>> a666436e9b2deac5364639d038c790408321f50d
     </form>
 
   </div>
