@@ -42,7 +42,8 @@ public class ProfileListServletTest {
     public void testDoGet() throws IOException, ServletException {
 
 
-        User testUser = new User(UUID.randomUUID(), "Test User", "Test Password", Instant.now());
+        User testUser = new User(UUID.randomUUID(), "Test User", "Test Password", Instant.now(), "This is my bio", "English");
+
         List <User> testList = new ArrayList();
         testList.add(testUser);
 
