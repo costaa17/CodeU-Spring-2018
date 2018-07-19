@@ -57,6 +57,8 @@ User user = (User) request.getAttribute("user");
     <p>     Date Joined: <%= user.getCreationTime()%></p>
     <p>     Biography: <%= user.getBio()%></p>
     <p>     Language: <%= user.getLanguage()%></p>
-
+    <form action="/profile/<%=user.getName()%>" method="POST" id="form">
+          <button type="submit">Add Friend</button>
+     </form>
     </body>
     </html>
