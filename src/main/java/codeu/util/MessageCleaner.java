@@ -4,8 +4,16 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.regex.*;
 import org.jsoup.Jsoup;
+import codeu.model.data.Message;
 import org.jsoup.nodes.Document.OutputSettings;
 import org.jsoup.safety.Whitelist;
+import com.google.cloud.translate.Detection;
+import com.google.cloud.translate.Language;
+import com.google.cloud.translate.Translate;
+import com.google.cloud.translate.Translate.LanguageListOption;
+import com.google.cloud.translate.Translate.TranslateOption;
+import com.google.cloud.translate.TranslateOptions;
+import com.google.cloud.translate.Translation;
 
 public class MessageCleaner {
 
@@ -61,5 +69,6 @@ public class MessageCleaner {
 		}
 		return newText;
   }
+
 
 }

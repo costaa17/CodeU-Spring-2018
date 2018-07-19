@@ -13,6 +13,16 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import codeu.model.data.User;
 import codeu.model.store.basic.UserStore;
+import java.util.List;
+
+import com.google.cloud.translate.Detection;
+import com.google.cloud.translate.Language;
+import com.google.cloud.translate.Translate;
+import com.google.cloud.translate.Translate.LanguageListOption;
+import com.google.cloud.translate.Translate.TranslateOption;
+import com.google.cloud.translate.TranslateOptions;
+import com.google.cloud.translate.Translation;
+
 
 public class RegisterServlet extends HttpServlet {
 
@@ -40,6 +50,13 @@ public class RegisterServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response)
       throws IOException, ServletException {
+
+    // Translate translate = TranslateOptions.getDefaultInstance().getService();
+    // LanguageListOption target = LanguageListOption.targetLanguage("en");
+    // List<Language> languages = translate.listSupportedLanguages(target);
+
+    // request.setAttribute("languages", languages);
+
     request.getRequestDispatcher("/WEB-INF/view/register.jsp").forward(request, response);
   }
 
@@ -60,6 +77,12 @@ public class RegisterServlet extends HttpServlet {
       request.getRequestDispatcher("/WEB-INF/view/register.jsp").forward(request, response);
       return;
     }
+    
+    // Translate translate = TranslateOptions.getDefaultInstance().getService();
+    // LanguageListOption target = LanguageListOption.targetLanguage("en");
+    // List<Language> languages = translate.listSupportedLanguages(target);
+
+    // request.setAttribute("languages", languages);
 
     String language = request.getParameter("language");
     String password = request.getParameter("password");

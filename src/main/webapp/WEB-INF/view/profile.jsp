@@ -46,6 +46,7 @@ User user = (User) request.getAttribute("user");
     <h1>Profile</h1>
 
     <p>Username: <%= user%></p>
+    <p>Language: <%= user.getLanguage()%></p>
 
     </body>
     </html>
