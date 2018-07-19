@@ -29,6 +29,9 @@
 <head>
   <title>Register</title>
   <link rel="stylesheet" href="/css/main.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Zilla+Slab');
+    </style>
 </head>
 <body>
 
@@ -46,7 +49,7 @@
       || request.getSession().getAttribute("user").equals("GavinLifrieri")) { %>
        <a href="/admin">Administration</a>
         <% } else{ %>
-          <a href="/login">Login</a>
+          <a href="/login">Log Out<</a>
         <% } %>
            <% } else{ %>
       <a href="/login">Login</a>
@@ -58,7 +61,7 @@
 
 <%  for (int i = 0; i < list.size(); i++) {
       String currUser = list.get(i).getName(); %>
-      <li> User name: <a href= \<%= "profile/" + currUser %> > <%= currUser %></a> </li>
+      <li> Username: <a href= \<%= "profile/" + currUser %> > <%= currUser %></a> </li>
 <% } %>
 
     </body>

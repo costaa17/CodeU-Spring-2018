@@ -22,6 +22,9 @@
   <title>Conversations</title>
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/form.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Zilla+Slab');
+    </style>
 </head>
 <body>
 
@@ -39,7 +42,7 @@
       || request.getSession().getAttribute("user").equals("GavinLifrieri")) { %>
        <a href="/admin">Administration</a>
         <% } else{ %>
-          <a href="/login">Login</a>
+          <a href="/login">Log Out</a>
         <% } %>
            <% } else{ %>
       <a href="/login">Login</a>
@@ -85,7 +88,7 @@
       for(Conversation conversation : conversations){
     %>
       <a href="/chat/<%= conversation.getTitle() %>">
-        <p>   <%= conversation.getTitle() %></a>   <p> 
+        <p>   <%= conversation.getTitle() %></a>   <p>
     <%
       }
     %>
