@@ -69,21 +69,21 @@ public class PersistentDataStore {
         String passwordHash = (String) entity.getProperty("password_hash");
 
         Instant creationTime = Instant.parse((String) entity.getProperty("creation_time"));
-        
-            if (entity.getProperty("friends") == null) {
-              entity.setProperty("friends", "{}");
-            }
-            JSONArray json = new JSONArray((String) entity.getProperty("friends"));
-            Set<String> friends = new HashSet<>();
-            for (int i = 0; i < json.length(); i++) {
-              friends.add(json.getString(i));
-            }
-            String bio = (String) entity.getProperty("bio");
-            String language = (String) entity.getProperty("language");
-            User user = new User(uuid, userName, passwordHash, creationTime, bio, language, friends);
 
-            users.add(user);
-          } catch (Exception e) {
+        if (entity.getProperty("friends") == null) {
+          entity.setProperty("friends", "{}");
+        }
+        JSONArray json = new JSONArray((String) entity.getProperty("friends"));
+        Set<String> friends = new HashSet<>();
+        for (int i = 0; i < json.length(); i++) {
+          friends.add(json.getString(i));
+        }
+        String bio = (String) entity.getProperty("bio");
+        String language = (String) entity.getProperty("language");
+        User user = new User(uuid, userName, passwordHash, creationTime, bio, language, friends);
+
+        users.add(user);
+      } catch (Exception e) {
         // In a production environment, errors should be very rare. Errors which may
         // occur include network errors, Datastore service errors, authorization errors,
         // database entity definition mismatches, or service mismatches.
