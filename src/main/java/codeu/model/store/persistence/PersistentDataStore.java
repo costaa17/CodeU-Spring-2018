@@ -71,7 +71,7 @@ public class PersistentDataStore {
         Instant creationTime = Instant.parse((String) entity.getProperty("creation_time"));
             if (entity.getProperty("friends") == null) {
                 entity.setProperty("friends", "{}");
-              }
+            }
             JSONArray json = new JSONArray((String) entity.getProperty("friends"));
             Set<String> friends = new HashSet<>();
             for (int i = 0; i < json.length(); i++) {
