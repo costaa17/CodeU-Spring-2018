@@ -48,9 +48,6 @@ public class LoginServlet extends HttpServlet {
     this.userStore = userStore;
   }
 
-  void resetUserStore() {
-    this.userStore = null;
-  }
   /**
    * This function fires when a user requests the /login URL. It simply forwards the request to
    * login.jsp.
