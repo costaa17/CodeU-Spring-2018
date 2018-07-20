@@ -19,6 +19,9 @@
   <title>Login</title>
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/form.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Zilla+Slab');
+    </style>
 </head>
 <body>
 
@@ -36,7 +39,7 @@
       || request.getSession().getAttribute("user").equals("GavinLifrieri")) { %>
        <a href="/admin">Administration</a>
         <% } else{ %>
-          <a href="/login">Login</a>
+          <a href="/login">Log Out</a>
         <% } %>
            <% } else{ %>
       <a href="/login">Login</a>
@@ -68,7 +71,9 @@
       </div>
     </form>
 
-    <p>New users can register <a href="/register">here</a>.</p>
+    <p style="text-align:  center; font-size: 20px;"
+      >New users can register <a href="/register">here</a>.
+    </p>
   </div>
 </body>
 </html>

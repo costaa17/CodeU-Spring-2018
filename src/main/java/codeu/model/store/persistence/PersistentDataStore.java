@@ -25,9 +25,7 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
-import com.google.appengine.repackaged.com.google.api.client.util.Lists;
-import com.google.appengine.repackaged.org.json.JSONArray;
-import jdk.nashorn.internal.parser.JSONParser;
+import org.json.JSONArray;
 
 import java.time.Instant;
 import java.util.*;
@@ -203,7 +201,7 @@ public class PersistentDataStore {
     userEntity.setProperty("password_hash", user.getPasswordHash());
     userEntity.setProperty("creation_time", user.getCreationTime().toString());
 
-    String friendsJSON = (new JSONArray(Lists.newArrayList(user.getFriends()))).toString();
+    String friendsJSON = (new JSONArray(new ArrayList(user.getFriends()))).toString();
     userEntity.setProperty("friends", friendsJSON);
 
     userEntity.setProperty("language", user.getLanguage());

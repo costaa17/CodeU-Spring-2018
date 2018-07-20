@@ -9,6 +9,9 @@
 <head>
   <title>Administration</title>
   <link rel="stylesheet" href="/css/main.css">
+  <style>
+  /*  @import url('https://fonts.googleapis.com/css?family=Zilla+Slab');*/
+    </style>
 </head>
 <body>
 
@@ -26,7 +29,7 @@
       || request.getSession().getAttribute("user").equals("GavinLifrieri")) { %>
        <a href="/admin">Administration</a>
         <% } else{ %>
-          <a href="/login">Login</a>
+          <a href="/login">Log Out</a>
         <% } %>
            <% } else{ %>
       <a href="/login">Login</a>

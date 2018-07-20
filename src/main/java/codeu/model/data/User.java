@@ -59,7 +59,7 @@ public class User {
         userStore = UserStore.getInstance();
 
     }
-  
+
     public User(UUID id, String name, String passwordHash, Instant creation, String bio, String language) {
         this(id, name, passwordHash, creation, bio, language, new HashSet<>());
     }
@@ -99,7 +99,7 @@ public class User {
     public String getLanguage() {
         return language;
     }
-  
+
   /** Returns a set with the usernames of this User's friends. */
   public Set<String> getFriends() {
     return friends;

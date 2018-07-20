@@ -123,7 +123,7 @@ public class ConversationServletTest {
 
     Mockito.verify(mockConversationStore, Mockito.never())
         .addConversation(Mockito.any(Conversation.class));
-    Mockito.verify(mockRequest).setAttribute("error", "Please enter only letters and numbers.");
+    Mockito.verify(mockRequest).setAttribute("error", "Please enter only letters and numbers with no spaces.");
     Mockito.verify(mockRequestDispatcher).forward(mockRequest, mockResponse);
   }
 

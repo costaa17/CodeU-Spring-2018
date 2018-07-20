@@ -28,7 +28,9 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
   <title><%= conversation.getTitle() %></title>
   <link rel="stylesheet" href="/css/main.css" type="text/css">
   <link rel="stylesheet" href="/css/chat.css" type="text/css">
-
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Zilla+Slab');
+    </style>
   <style>
 
   </style>
@@ -57,21 +59,16 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
       || request.getSession().getAttribute("user").equals("GavinLifrieri")) { %>
        <a href="/admin">Administration</a>
         <% } else{ %>
-          <a href="/login">Login</a>
+          <a href="/login">Log Out</a>
         <% } %>
            <% } else{ %>
       <a href="/login">Login</a>
     <% } %>
     <a href="/about.jsp">About</a>
   </nav>
-
   <div id="container">
-
     <h1><%= conversation.getTitle() %>
       <a href="" style="float: right">&#8635;</a></h1>
-
-    <hr/>
-
     <div id="chat">
       <ul>
     <%
@@ -85,9 +82,7 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
     %>
       </ul>
     </div>
-
     <hr/>
-
     <% if (request.getSession().getAttribute("user") != null) { %>
     <form action="/chat/<%= conversation.getTitle() %>" method="POST">
       <div id="messageSubmitContainer">
@@ -98,9 +93,6 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
     <% } else { %>
       <p><a href="/login">Login</a> to send a message.</p>
     <% } %>
-
     <hr/>
-
   </div>
-
 </body>
