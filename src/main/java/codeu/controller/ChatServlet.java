@@ -110,12 +110,6 @@ public class ChatServlet extends HttpServlet {
         request.setAttribute("user", user);
       }
     }
-
-
-
-    
-    
-
     request.setAttribute("conversation", conversation);
     request.setAttribute("messages", messages);
     request.getRequestDispatcher("/WEB-INF/view/chat.jsp").forward(request, response);
