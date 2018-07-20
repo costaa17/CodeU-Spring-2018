@@ -1,11 +1,12 @@
 #form {
-	margin: auto;
+    margin: auto;
     width: 100%;
-	position: relative;
+    position: relative;
+    padding-bottom: 3rem;
 }
 
 .form-box {
-	width: 60%;
+    width: 60%;
     margin: auto;
     box-shadow: 0px 0px 20px #CCC;
     padding: 50px;
@@ -17,7 +18,7 @@
 .form-box span {
     font-size: 15px;
     font-weight: bold;
-    font-family: "Zilla Slab";
+    font-family: 'Zilla Slab', serif;
     color: #2D4B68;
 }
 
@@ -28,21 +29,21 @@
 }
 
 .fb-item {
-	margin-bottom: 20px;
-	font-family: "Open Sans";
+    margin-bottom: 20px;
+    font-family: "Open Sans";
 }
 
 .fb-item input {
-	width: 100%;
+    width: 100%;
     font-size: 30px;
     color: #CCCCCC;
-    font-family: "Open Sans";
+    font-family: "Zilla Slab";
     font-weight: lighter;
-
     outline: none;
-    border: 2px solid white;
+    border: 2px solid #ECECEC;
     border-bottom: 2px solid #2D4B68;
-    -webkit-transition-duration: 0.4s; /* Safari */
+    -webkit-transition-duration: 0.4s;
+    /* Safari */
     transition-duration: 0.3s;
 }
 
@@ -51,13 +52,14 @@
     background-color: white;
     color: black;
 }
+
 .fb-item input::placeholder {
     opacity: 1;
 }
 
 .form-button {
-    background-color: #2D4B68;
-    border: 2px solid #2D4B68;
+    background-color: #122656;
+    border: 2px solid #122656;
     color: white;
     padding: 16px 32px;
     text-align: center;
@@ -66,7 +68,8 @@
     font-size: 30px;
     font-family: "Zilla Slab";
     margin: 4px 2px;
-    -webkit-transition-duration: 0.4s; /* Safari */
+    -webkit-transition-duration: 0.4s;
+    /* Safari */
     transition-duration: 0.4s;
     cursor: pointer;
     bottom: 0;
@@ -75,12 +78,12 @@
     padding: 20px;
 }
 
-.form-button:focus{
+.form-button:focus {
     outline: none;
 }
 
-.form-button:hover{
-    opacity: 0.8;
+.form-button:hover {
+    opacity: 1.2;
 }
 
 .convo-form {
@@ -88,6 +91,7 @@
     padding-right: 50px;
     padding-top: 30px;
     padding-bottom: 15px;
+    background: #F7F7F7;
 }
 
 .convo-form input {
