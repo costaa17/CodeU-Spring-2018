@@ -13,12 +13,29 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 --%>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.google.cloud.translate.Translate" %>
+<%@ page import="com.google.cloud.translate.Translate.TranslateOption" %>
+<%@ page import="com.google.cloud.translate.Translate.LanguageListOption" %>
+<%@ page import="com.google.cloud.translate.TranslateOptions" %>
+<%@ page import="com.google.cloud.translate.Translation" %>
+<%@ page import="com.google.cloud.translate.Language" %>
+
+<%
+    Translate translate = TranslateOptions.getDefaultInstance().getService();
+    LanguageListOption target = LanguageListOption.targetLanguage("en");
+    List<Language> listlanguages = translate.listSupportedLanguages(target);
+    ArrayList<Language> languages = new ArrayList<Language>(listlanguages);
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
   <title>Register</title>
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/form.css">
+
   <style>
     </style>
 </head>
@@ -70,6 +87,14 @@
         </div>
 
         <div class="fb-item">
+
+            <select id="mySelect" name="language" id="language">
+              <%  for (int i = 0; i < languages.size(); i++) {
+                Language language = languages.get(i); %>
+                <option> <%= language.getCode() %></option>
+              <% } %>
+            </select>
+
           <input type="bio" name="bio" id="bio" placeholder="Biography">
           <br/>
           <span>Please enter your biography here:</span>

@@ -13,6 +13,7 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import codeu.model.data.User;
 import codeu.model.store.basic.UserStore;
+import java.util.List;
 
 public class RegisterServlet extends HttpServlet {
 
@@ -40,6 +41,7 @@ public class RegisterServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response)
       throws IOException, ServletException {
+
     request.getRequestDispatcher("/WEB-INF/view/register.jsp").forward(request, response);
   }
 
