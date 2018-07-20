@@ -88,7 +88,7 @@
       for(Conversation conversation : conversations){
     %>
       <a href="/chat/<%= conversation.getTitle() %>">
-        <p>   <%= conversation.getTitle() %></a>   <p>
+        <p> <%= conversation.getTitle() %></a> <p>
     <%
       }
     %>
