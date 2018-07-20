@@ -69,8 +69,9 @@ public class PersistentDataStore {
         String passwordHash = (String) entity.getProperty("password_hash");
 
         Instant creationTime = Instant.parse((String) entity.getProperty("creation_time"));
+        
             if (entity.getProperty("friends") == null) {
-                entity.setProperty("friends", "{}");
+              entity.setProperty("friends", "{}");
             }
             JSONArray json = new JSONArray((String) entity.getProperty("friends"));
             Set<String> friends = new HashSet<>();
