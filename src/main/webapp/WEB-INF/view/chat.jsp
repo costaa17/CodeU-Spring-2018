@@ -16,10 +16,21 @@
 <%@ page import="java.util.List" %>
 <%@ page import="codeu.model.data.Conversation" %>
 <%@ page import="codeu.model.data.Message" %>
+<%@ page import="codeu.model.data.User" %>
 <%@ page import="codeu.model.store.basic.UserStore" %>
+<%@ page import="com.google.cloud.translate.Translate" %>
+<%@ page import="com.google.cloud.translate.Translate.TranslateOption" %>
+<%@ page import="com.google.cloud.translate.TranslateOptions" %>
+<%@ page import="com.google.cloud.translate.Translation" %>
+<%@ page import="com.google.cloud.translate.Language" %>
+<%@ page import="com.google.cloud.translate.Detection" %>
+
+
 <%
 Conversation conversation = (Conversation) request.getAttribute("conversation");
 List<Message> messages = (List<Message>) request.getAttribute("messages");
+User user = (User) request.getAttribute("user");
+Translate translate = TranslateOptions.getDefaultInstance().getService();
 %>
 
 <!DOCTYPE html>
@@ -73,10 +84,21 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
       <ul>
     <%
       for (Message message : messages) {
+        String messageContent = "";
         String author = UserStore.getInstance()
           .getUser(message.getAuthorId()).getName();
+        if (user != null){
+          Detection detection = translate.detect(message.getContent());
+          TranslateOption srcLang = TranslateOption.sourceLanguage(detection.getLanguage());
+          TranslateOption tgtLang = TranslateOption.targetLanguage(user.getLanguage());
+          TranslateOption model = TranslateOption.model("nmt");
+          Translation translation = translate.translate(message.getContent(), srcLang, tgtLang, model);
+          messageContent = translation.getTranslatedText();
+        }else{
+        messageContent = message.getContent();
+      }
     %>
-      <li><strong><%= author %>:</strong> <%= message.getContent() %></li>
+      <li><strong><%= author %>:</strong> <%= messageContent %></li>
     <%
       }
     %>

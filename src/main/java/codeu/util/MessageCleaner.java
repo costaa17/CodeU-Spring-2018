@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.regex.*;
 import org.jsoup.Jsoup;
+import codeu.model.data.Message;
 import org.jsoup.nodes.Document.OutputSettings;
 import org.jsoup.safety.Whitelist;
 
@@ -61,5 +62,4 @@ public class MessageCleaner {
 		}
 		return newText;
   }
-
 }
