@@ -75,6 +75,12 @@ public class UserStore {
     return users;
   }
 
+
+/** Returns the number of users **/
+  public int getUserCount() {
+    return users.size();
+  }
+
   /**
    * Access the User object with the given name.
    *
@@ -148,4 +154,3 @@ public class UserStore {
     this.activityFeedStore = activityFeedStore;
   }
 }
-

@@ -47,7 +47,7 @@
         <% List<Conversation> conversations = ConversationStore.getInstance().getAllConversations(); %>
 
 
-	<p> Number of Users: <%= UserStore.getInstance().numberUsers(users) %>
+	<p> Number of Users: <%= UserStore.getInstance().getUserCount()%>
    	</p>
 	<p> Number of Conversations: <%= conversations.size() %> </p>
 
