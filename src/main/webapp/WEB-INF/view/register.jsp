@@ -35,37 +35,43 @@
   <title>Register</title>
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/form.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.js"></script>
-  <script src ="/scripts/register.js"></script>
 
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Zilla+Slab');
+    </style>
 </head>
 <body>
 
   <nav>
     <a id="navTitle" href="/">CodeU Chat App</a>
-    <a href="/conversations">Conversations</a>
-        <% if(request.getSession().getAttribute("user") != null) { %>
+    <% if(request.getSession().getAttribute("user") != null){ %>
       <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
-        <%if(request.getSession().getAttribute("user").equals("EmilyArroyo")||request.getSession().getAttribute("user").equals("AlexandriaStorm")||request.getSession().getAttribute("user").equals("AnaVitoriadoValleCosta")||request.getSession().getAttribute("user").equals("KevinWorkman")||request.getSession().getAttribute("user").equals("GavinLifrieri")) { %>
-
-        <a href="/admin">Administration</a>
+      <a href="/conversations">Conversations</a>
+      <a href="/profiles">Profiles</a>
+      <a href="/activityfeed">Activity</a>
+      <%if (request.getSession().getAttribute("user").equals("EmilyArroyo")
+      || request.getSession().getAttribute("user").equals("AlexandriaStorm")
+      || request.getSession().getAttribute("user").equals("AnaVitoriadoValleCosta")
+      || request.getSession().getAttribute("user").equals("KevinWorkman")
+      || request.getSession().getAttribute("user").equals("GavinLifrieri")) { %>
+       <a href="/admin">Administration</a>
         <% } else{ %>
-          <a href="/login">Login</a>
+          <a href="/login">Log Out<</a>
         <% } %>
-    <% } else{ %>
+           <% } else{ %>
       <a href="/login">Login</a>
     <% } %>
     <a href="/about.jsp">About</a>
- </nav>
-
+  </nav>
   <div id="container">
 
     <% if(request.getAttribute("error") != null){ %>
         <h2 style="color:red" id="error"><%= request.getAttribute("error") %></h2>
     <% } %>
 
+
     <form action="/register" method="POST" id="form">
-      
+
       <div class="form-box">
         <h2>Register</h2>
 
@@ -82,16 +88,24 @@
         </div>
 
         <div class="fb-item">
+
             <select id="mySelect" name="language" id="language">
               <%  for (int i = 0; i < languages.size(); i++) {
                 Language language = languages.get(i); %>
                 <option> <%= language.getCode() %></option>
               <% } %>
             </select>
+
+          <input type="bio" name="bio" id="bio" placeholder="Biography">
+          <br/>
+          <span>Please enter your biography here:</span>
+        </div>
+
+        <div class="fb-item">
+          <input type="text" name="language" id="language" placeholder="Language">
           <br/>
           <span>Most Comfortable Language</span>
         </div>
-
 
         <button type="submit" class="form-button">Register</button>
       </div>

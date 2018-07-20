@@ -29,33 +29,39 @@
 <head>
   <title>Register</title>
   <link rel="stylesheet" href="/css/main.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Zilla+Slab');
+    </style>
 </head>
 <body>
 
   <nav>
     <a id="navTitle" href="/">CodeU Chat App</a>
-      <% if(request.getSession().getAttribute("user") != null){ %>
-        <a href="/conversations">Conversations</a>
-        <a href="/profiles">Profiles</a>
-
-        <% if(request.getSession().getAttribute("user").equals("EmilyArroyo")||request.getSession().getAttribute("user").equals("AlexandriaStorm")||request.getSession().getAttribute("user").equals("AnaVitoriadoValleCosta")||request.getSession().getAttribute("user").equals("KevinWorkman")||request.getSession().getAttribute("user").equals("GavinLifrieri")) { %>
-          <a href="/admin">Administration</a>
-        <% }else{ %>
-          <a href="/about.jsp">About</a>
-          <a> Hello <%= request.getSession().getAttribute("user") %>!</a>
-          <a href="/activityfeed">Activity</a>
+    <% if(request.getSession().getAttribute("user") != null){ %>
+      <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
+      <a href="/conversations">Conversations</a>
+      <a href="/profiles">Profiles</a>
+      <a href="/activityfeed">Activity</a>
+      <%if (request.getSession().getAttribute("user").equals("EmilyArroyo")
+      || request.getSession().getAttribute("user").equals("AlexandriaStorm")
+      || request.getSession().getAttribute("user").equals("AnaVitoriadoValleCosta")
+      || request.getSession().getAttribute("user").equals("KevinWorkman")
+      || request.getSession().getAttribute("user").equals("GavinLifrieri")) { %>
+       <a href="/admin">Administration</a>
+        <% } else{ %>
+          <a href="/login">Log Out<</a>
         <% } %>
-      <% }else{ %>
-        <a href="/login">Login</a>
-        <a href="/about.jsp">About</a>
-      <% } %>
+           <% } else{ %>
+      <a href="/login">Login</a>
+    <% } %>
+    <a href="/about.jsp">About</a>
   </nav>
 
     <h1>Profiles</h1>
 
 <%  for (int i = 0; i < list.size(); i++) {
       String currUser = list.get(i).getName(); %>
-      <li>User name: <a href= \<%= "profile/" + currUser %> > <%= currUser %></a> </li>
+      <li> Username: <a href= \<%= "profile/" + currUser %> > <%= currUser %></a> </li>
 <% } %>
 
     </body>
