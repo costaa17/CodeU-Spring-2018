@@ -48,8 +48,8 @@ public class PersistentDataStoreTest {
     UUID idTwo = UUID.fromString("10000001-2222-3333-4444-555555555555");
     String nameTwo = "test_username_two";
     String passwordHashTwo = "$2a$10$ttaMOMMGLKxBBuTN06VPvu.jVKif.IczxZcXfLcqEcFi1lq.sLb6i";
+    String languageTwo = "French";
     Instant creationTwo = Instant.ofEpochMilli(2000);
-     String languageTwo = "French";
      User inputUserTwo = new User(idTwo, nameTwo, passwordHashTwo, creationTwo, "random bio", languageTwo);
 
     // save
