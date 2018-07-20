@@ -56,6 +56,7 @@ public class User {
         this.bio = bio;
         this.language = language;
         this.friends = friends;
+        userStore = UserStore.getInstance();
 
     }
   
@@ -110,7 +111,7 @@ public class User {
    * @param username the username of the friend to be added
    */
   public void addFriend(String username) {
-      if (userStore.getUser(id) != null) {
+      if (userStore.getUser(username) != null) {
         friends.add(username);
       }
   }
