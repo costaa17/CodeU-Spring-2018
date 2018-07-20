@@ -19,7 +19,6 @@
   <head>
     <title>CodeU Chat App</title>
     <style>
-      @import url('https://fonts.googleapis.com/css?family=Zilla+Slab');
     </style>
     <link rel="stylesheet" href="/css/main.css">
   </head>

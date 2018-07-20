@@ -6,7 +6,6 @@
   <title>Activity Feed</title>
   <link rel="stylesheet" href="/css/main.css">
   <style>
-  /*@import url('https://fonts.googleapis.com/css?family=Zilla+Slab');*/
     </style>
 </head>
 <body>

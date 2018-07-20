@@ -1,6 +1,6 @@
 <%@ page import = "java.util.List" %>
 <%@ page import = "codeu.model.data.User" %>
-<%@ page import = "codeu.model.store.basic.UserStore" %> 
+<%@ page import = "codeu.model.store.basic.UserStore" %>
 <%@ page import = "codeu.model.data.Conversation " %>
 <%@ page import = "codeu.model.store.basic.ConversationStore" %>
 
@@ -10,7 +10,6 @@
   <title>Administration</title>
   <link rel="stylesheet" href="/css/main.css">
   <style>
-  /*  @import url('https://fonts.googleapis.com/css?family=Zilla+Slab');*/
     </style>
 </head>
 <body>
@@ -41,13 +40,13 @@
 <div id="container">
     <div>
       <style="width:75%; margin-left:auto; margin-right:auto; margin-top: 50px;">
-	
+
       <h1>Admin Stats</h1>
 	<% List<User> users = UserStore.getInstance().getUsersList(); %>
 	<% String recentUser = users.get(users.size() -1).getName(); %>
         <% List<Conversation> conversations = ConversationStore.getInstance().getAllConversations(); %>
 
-	
+
 	<p> Number of Users: <%= UserStore.getInstance().numberUsers(users) %>
    	</p>
 	<p> Number of Conversations: <%= conversations.size() %> </p>

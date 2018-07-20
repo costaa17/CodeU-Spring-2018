@@ -20,7 +20,6 @@
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/form.css">
   <style>
-    @import url('https://fonts.googleapis.com/css?family=Zilla+Slab');
     </style>
 </head>
 <body>

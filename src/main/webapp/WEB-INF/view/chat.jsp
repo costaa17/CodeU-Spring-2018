@@ -29,7 +29,6 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
   <link rel="stylesheet" href="/css/main.css" type="text/css">
   <link rel="stylesheet" href="/css/chat.css" type="text/css">
   <style>
-    @import url('https://fonts.googleapis.com/css?family=Zilla+Slab');
     </style>
   <style>
 
