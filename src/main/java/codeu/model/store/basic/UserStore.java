@@ -147,5 +147,9 @@ public class UserStore {
   public void setActivityFeedStore(ActivityFeedStore activityFeedStore) {
     this.activityFeedStore = activityFeedStore;
   }
+
+  public int numberUsers(List<User> users){
+      return users.size();
+  }
 }
 
