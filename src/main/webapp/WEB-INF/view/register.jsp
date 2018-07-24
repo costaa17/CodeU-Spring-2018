@@ -25,8 +25,7 @@
 <%
     Translate translate = TranslateOptions.getDefaultInstance().getService();
     LanguageListOption target = LanguageListOption.targetLanguage("en");
-    List<Language> listlanguages = translate.listSupportedLanguages(target);
-    ArrayList<Language> languages = new ArrayList<Language>(listlanguages);
+    List<Language> languages = translate.listSupportedLanguages(target);
 %>
 
 <!DOCTYPE html>

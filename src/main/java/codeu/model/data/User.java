@@ -105,6 +105,12 @@ public class User {
     return friends;
   }
 
+
+  public int getFriendCount() {
+    return friends.size();
+  }
+
+
   /**
    * Adds friend with given id if User with given id exists
    *

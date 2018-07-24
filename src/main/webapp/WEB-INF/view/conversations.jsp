@@ -15,6 +15,17 @@
 --%>
 <%@ page import="java.util.List" %>
 <%@ page import="codeu.model.data.Conversation" %>
+<dependency>
+    <groupId>com.google.cloud</groupId>
+    <artifactId>google-cloud-translate</artifactId>
+    <version>LATEST</version>
+</dependency>
+
+<dependency>
+    <groupId>com.google.http-client</groupId>
+    <artifactId>google-http-client-gson</artifactId>
+    <version>LATEST</version>
+</dependency>
 
 <!DOCTYPE html>
 <html>
@@ -26,6 +37,7 @@
     </style>
 </head>
 <body>
+
 
   <nav>
     <a id="navTitle" href="/">CodeU Chat App</a>

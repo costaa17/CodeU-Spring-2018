@@ -54,14 +54,18 @@ User user = (User) request.getAttribute("user");
     <% } %>
     <a href="/about.jsp">About</a>
   </nav>
-
-
     <h1>   <%=user.getName()%></h1>
     <p>     Date Joined: <%= user.getCreationTime()%></p>
     <p>     Biography: <%= user.getBio()%></p>
     <p>     Language: <%= user.getLanguage()%></p>
+
+    <% String currentName = user.getName();
+    if (user.getName() != request.getSession().getAttribute("user"))
+     //&& !(request.isFriend(currentName)))
+      { %>
     <form action="/profile/<%=user.getName()%>" method="POST" id="form">
           <button type="submit">Add Friend</button>
      </form>
+   }
     </body>
     </html>
