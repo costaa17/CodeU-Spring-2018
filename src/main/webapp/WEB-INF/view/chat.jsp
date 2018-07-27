@@ -27,10 +27,13 @@
 
 
 <%
+// Puposely left in a compiler error to remind us to set this before deployment.
+// Change this before deploying, but don't check this into GitHub!
+String APIKEY = YOUR_API_KEY_HERE;
 Conversation conversation = (Conversation) request.getAttribute("conversation");
 List<Message> messages = (List<Message>) request.getAttribute("messages");
 User user = (User) request.getAttribute("user");
-Translate translate = TranslateOptions.getDefaultInstance().getService();
+Translate translate = TranslateOptions.newBuilder().setApiKey(APIKEY).build().getService();
 %>
 
 <!DOCTYPE html>
@@ -88,11 +91,16 @@ Translate translate = TranslateOptions.getDefaultInstance().getService();
           .getUser(message.getAuthorId()).getName();
         if (user != null){
           Detection detection = translate.detect(message.getContent());
-          TranslateOption srcLang = TranslateOption.sourceLanguage(detection.getLanguage());
-          TranslateOption tgtLang = TranslateOption.targetLanguage(user.getLanguage());
-          TranslateOption model = TranslateOption.model("nmt");
-          Translation translation = translate.translate(message.getContent(), srcLang, tgtLang, model);
-          messageContent = translation.getTranslatedText();
+          if(detection.getLanguage().equals(user.getLanguage())) {
+            messageContent = message.getContent();
+          }
+          else{
+            TranslateOption srcLang = TranslateOption.sourceLanguage(detection.getLanguage());
+            TranslateOption tgtLang = TranslateOption.targetLanguage(user.getLanguage());
+            TranslateOption model = TranslateOption.model("nmt");
+            Translation translation = translate.translate(message.getContent(), srcLang, tgtLang, model);
+            messageContent = "[Translated from " + detection.getLanguage() + "] " + translation.getTranslatedText();
+          }
         }else{
         messageContent = message.getContent();
       }
